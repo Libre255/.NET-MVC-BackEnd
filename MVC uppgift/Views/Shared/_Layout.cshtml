@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Ashu</title>
+</head>
+<body>
+    <header>
+       <img src="logo.png" width="100vw"/>
+        <menu>
+            <li>
+                @Html.ActionLink("Index", "Index")
+            </li>
+            <li>
+                @Html.ActionLink("MiTomatito", "Tomato")
+            </li>
+        </menu>
+    </header>
+    <main>
+       
+        @RenderBody()
+    </main>
+    <footer>
+        @DateTime.Today.ToString("d") Brian Veliz
+    </footer>
+</body>
+</html>
