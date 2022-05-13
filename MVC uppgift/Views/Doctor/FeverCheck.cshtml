@@ -1,0 +1,9 @@
+﻿<form asp-controller="Doctor" asp-action="FeverCheck" method="post">
+    <label for="">Write your fever</label>
+    <input type="number" name="temperature">
+</form>
+
+@if(ViewBag.TemperatureResult != null)
+{
+    <p>@ViewBag.TemperatureResult</p>
+}

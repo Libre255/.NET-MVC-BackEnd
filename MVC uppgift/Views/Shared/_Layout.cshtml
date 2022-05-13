@@ -11,16 +11,19 @@
        <img src="/logo.png" width="100vw"/>
         <menu>
             <li>
-                @Html.ActionLink("Index", "Index")
+                <a asp-controller="Home" asp-action="Index">Home</a>
             </li>
             <li>
-                @Html.ActionLink("About me", "About")
+                <a asp-controller="Home" asp-action="About">About</a>
             </li>
             <li>
-                @Html.ActionLink("Contact", "Contact")
+                <a asp-controller="Home" asp-action="Contact">Contact</a>
             </li>
             <li>
-                @Html.ActionLink("Projects", "Projects")
+                <a asp-controller="Home" asp-action="Projects">Projects</a>
+            </li>
+            <li>
+                <a asp-controller="Doctor" asp-action="FeverCheck">Fever Check</a>
             </li>
         </menu>
     </header>
