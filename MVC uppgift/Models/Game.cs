@@ -2,10 +2,12 @@
 {
     public class Game
     {
+        public static bool foundTheNr = false;
         public static string GuessTheNumber(int UserGuess, int SecretNumber)
         {
             if(UserGuess != SecretNumber)
             {
+                foundTheNr = false;
                 if (UserGuess > SecretNumber)
                 {
                     return "You guessed to high";
@@ -15,10 +17,11 @@
                     return "You guessed to low";
                 }else
                 {
-                    return "Aok";
+                    return "";
                 }
             }else
             {
+                foundTheNr = true;
                 return "Congratulations you found the secret number!";
             }
         }

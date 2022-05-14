@@ -5,35 +5,32 @@ namespace MVC_uppgift.Controllers
 {
     public class GameController : Controller
     {
-        public GameController()
-        {
-            
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult GuessingGame()
         {
             if (HttpContext.Session.GetInt32("RandomNumber") == null)
             {
                 AddNewRandomNr();
             }
-            ViewBag.Testa = (int)HttpContext.Session.GetInt32("RandomNumber");
             return View();
         }
         [HttpPost]
         public IActionResult GuessingGame(int UserGuess)
+        {
+            ControllGuessNr(UserGuess);
+            return View();
+        }
+        private void ControllGuessNr(int UserGuess)
         {
             if (HttpContext.Session.GetInt32("RandomNumber") != null)
             {
                 int SecretNumber = (int)HttpContext.Session.GetInt32("RandomNumber");
                 string GuessResult = Game.GuessTheNumber(UserGuess, SecretNumber);
                 ViewBag.Message = GuessResult;
-                ViewBag.Testa = (int)HttpContext.Session.GetInt32("RandomNumber");
+                if (Game.foundTheNr)
+                {
+                    AddNewRandomNr();
+                }
             }
-            return View();
         }
 
         public void AddNewRandomNr()
