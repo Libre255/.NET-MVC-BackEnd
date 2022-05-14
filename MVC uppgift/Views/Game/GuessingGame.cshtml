@@ -1,0 +1,15 @@
+﻿
+@if(ViewBag.Testa != null)
+{
+    <h1>Secret: @ViewBag.Testa</h1>
+}
+<h1>Guess a number between 1 and 100!</h1>
+
+<form asp-controller="Game" asp-action="GuessingGame" method="post">
+    <label for="">Write your guess</label>
+    <input type="number" name="UserGuess">
+</form>
+
+@if(ViewBag.Message != null){
+    <p>ViewBag.Message</p>
+}
