@@ -16,5 +16,6 @@ app.UseSession();
 app.MapControllerRoute(name: "default", pattern: "{action}", defaults: new { controller = "Home", action = "Index" });
 app.MapControllerRoute(name: "Doctor", pattern: "FeverCheck", defaults: new { controller = "Doctor", action = "FeverCheck"});
 app.MapControllerRoute(name: "Game", pattern: "GuessingGame", defaults: new { controller = "Game", action = "GuessingGame" });
+app.MapControllerRoute(name: "People", pattern: "People", defaults: new { controller = "People", action = "Index" });
 
 app.Run();

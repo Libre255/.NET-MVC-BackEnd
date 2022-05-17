@@ -11,7 +11,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/logo.png" width="100vw"/></a>
+        <a class="navbar-brand" asp-controller="Home" 
+                       asp-action="Index"><img src="/logo.png" width="100vw"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,16 +40,19 @@
                 <li class="nav-item">
                     <a class="nav-link"  asp-controller="Game" asp-action="GuessingGame">Guessing Game</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"  asp-controller="People" asp-action="Index">People</a>
+                </li>
             </ul>
         </div>
         </div>
     </nav>
-    <main class="container h-75" >
+    <main class="container" style="height:75vh" >
         @RenderBody()
     </main>
     <footer class="text-center text-bg-dark p-4 mt-5 rounded-pill w-75 container">
         @DateTime.Today.ToString("d") Brian Veliz
     </footer>
-    <script src="/bootstrap.min.js"></script>  
+    <script src="/bootstrap.bundle.min.js"></script>  
 </body>
 </html>
