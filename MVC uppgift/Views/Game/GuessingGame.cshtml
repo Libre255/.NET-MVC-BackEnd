@@ -1,9 +1,8 @@
-﻿
-<h1>Guess a number between 1 and 100!</h1>
-
-<form asp-controller="Game" asp-action="GuessingGame" method="post">
-    <label for="">Write your guess</label>
-    <input type="number" name="UserGuess">
+﻿<form asp-controller="Game" asp-action="GuessingGame" method="post">
+    <div class="mb-3">
+      <label for="MainTitle" class="form-label">Guess a number between 1 and 100!</label>
+      <input type="number" name="UserGuess" id="MainTitle" class="form-control" placeholder="Write your guess" >
+    </div>
 </form>
 
 @if(ViewBag.Message != null){

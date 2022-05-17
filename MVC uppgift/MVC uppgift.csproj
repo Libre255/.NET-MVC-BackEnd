@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
   </ItemGroup>
 
 </Project>

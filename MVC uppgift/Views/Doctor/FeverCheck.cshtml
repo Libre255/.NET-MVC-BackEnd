@@ -1,8 +1,10 @@
 ﻿<form asp-controller="Doctor" asp-action="FeverCheck" method="post">
-    <label for="">Write your fever</label>
-    <input type="number" name="temperature">
-</form>
+    <div class="mb-3">
+        <label for="title" class="form-label">Write your fever</label>
+        <input type="number" name="temperature" class="form-control" id="title" aria-describedby="emailHelp">
+    </div>
 
+</form>
 
 @if(ViewBag.TemperatureResult != null)
 {
