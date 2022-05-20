@@ -1,10 +1,10 @@
 ﻿
+@using MVC_uppgift.Models;
+@model List<People>;
+
 <div class="mb-3 row g-2 mt-2">
-    <form class="col-auto">
-        <input class="form-control" list="ListOfPeople" placeholder="Search people">
-        <datalist id="ListOfPeople">
-          <option value="Exampel"/>
-        </datalist>
+    <form class="col-auto border-dark" asp-controller="People" asp-action="Index">
+        <input class="form-control" name="SearchInput" list="ListOfPeople" placeholder="Search people">
     </form>
 
     <div class="col"></div>
@@ -14,18 +14,18 @@
               type="button"  data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         Add people
       </button>
-      <form class="dropdown-menu p-4">
+      <form class="dropdown-menu p-4" asp-controller="People" asp-action="AddPeople">
         <div class="mb-3">
           <label for="NameInput" class="form-label">Name</label>
-          <input type="text" class="form-control" id="NameInput" >
+          <input type="text" class="form-control" id="NameInput" name="NameInput">
         </div>
         <div class="mb-3">
           <label for="PhoneNumber" class="form-label">Phone number</label>
-          <input type="text" class="form-control" id="PhoneNumber">
+          <input type="text" class="form-control" id="PhoneNumber" name="PhoneInput">
         </div>
         <div class="mb-3">
           <label for="City" class="form-label">City</label>
-          <input type="text" class="form-control" id="City">
+          <input type="text" class="form-control" id="City" name="CityInput">
         </div>
        
         <button type="submit" class="btn btn-dark">Add</button>
@@ -43,28 +43,19 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
-    <tr>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>dasd</td>
-      <td class="table-hover">
-          <button type="button" class="btn btn-danger"><partial name="_DeletIcon"/></button>
-      </td>
-    </tr>
-    <tr>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>asd</td>
-      <td class="table-hover">
-        <button type="button" class="btn btn-danger"><partial name="_DeletIcon"/></button>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">Larry the Bird</td>
-      <td>asdasd</td>
-      <td class="table-hover">
-          <button type="button" class="btn btn-danger"><partial name="_DeletIcon"/></button>
-      </td>
-    </tr>
+    @foreach(People Person in Model)
+    {
+        <tr>
+            <td>@Person.Name</td>
+            <td>@Person.PhoneNumber</td>
+            <td>@Person.City</td>
+            <td class="table-hover">
+                <a class="btn btn-danger" asp-route-InputName=@Person.Name asp-controller="People" asp-action="DeletPeople">
+                    <partial name="_DeletIcon"/>
+                </a>
+            </td> 
+        </tr>
+    }
   </tbody>
 </table>
+@*href="/People/DeletPeople/@Person.Name"*@

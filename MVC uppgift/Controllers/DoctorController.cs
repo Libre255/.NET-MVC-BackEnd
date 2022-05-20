@@ -12,7 +12,10 @@ namespace MVC_uppgift.Controllers
         [HttpPost]
         public IActionResult FeverCheck(int temperature)
         {
-            ViewBag.TemperatureResult = Doctor.HasFever(temperature);
+            if(temperature != null)
+            {
+                ViewBag.TemperatureResult = Doctor.HasFever(temperature);
+            }
             return View();
         }
     }

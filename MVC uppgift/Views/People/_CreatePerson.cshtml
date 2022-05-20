@@ -1,0 +1,18 @@
+﻿@using MVC_uppgift.Models;
+@model People;
+<form class="dropdown-menu p-4" method="Post" asp-controller="People" asp-action="AddPeople">
+    <div class="mb-3">
+        <label for="NameInput" class="form-label">Name</label>
+        <input type="text" class="form-control" id="NameInput" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label for="PhoneNumber" class="form-label">Phone number</label>
+        <input type="text" class="form-control" id="PhoneNumber" asp-for="PhoneNumber">
+    </div>
+    <div class="mb-3">
+        <label for="City" class="form-label">City</label>
+        <input type="text" class="form-control" id="City" asp-for="City">
+    </div>
+       
+    <button type="submit" class="btn btn-dark">Add</button>
+</form>
