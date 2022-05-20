@@ -5,26 +5,25 @@ namespace MVC_uppgift.Controllers
 {
     public class PeopleController : Controller
     {
+        MainViewModel MainVM = new MainViewModel();
+        public PeopleController()
+        {
+            MainVM.CreatePersonVM = new CreatePersonViewModel();
+            MainVM.PeopleVM = new PeopleViewModel();
+        }
         public ViewResult Index()
         {
-            return View(PeopleViewModel.MainList);
+            return View(MainVM);
         }
         [HttpPost]
         public ViewResult Index(string SearchInput)
         {
             if(SearchInput != null)
             {
-                return View(PeopleViewModel.SearchPeople(SearchInput));
+                MainVM.PeopleVM.PeopleList = MainVM.PeopleVM.SearchPeople(SearchInput);
+                return View(MainVM);
             }
-            return View(PeopleViewModel.MainList);
-        }
-        public RedirectToActionResult AddPeople(string nameInput, int PhoneInput, string CityInput)
-        {
-            if (ModelState.IsValid)
-            {
-                PeopleViewModel.MainList.Add(new People(nameInput, PhoneInput, CityInput));
-            }
-            return RedirectToAction("Index");
+            return View(MainVM);
         }
         public RedirectToActionResult DeletPeople(string InputName)
         {
@@ -35,6 +34,14 @@ namespace MVC_uppgift.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+        public RedirectToActionResult AddPeople(CreatePersonViewModel PersonObj)
+        {
+            if (ModelState.IsValid)
+            {
+                PeopleViewModel.MainList.Add(new People(PersonObj.Name, PersonObj.PhoneNumber, PersonObj.City));
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

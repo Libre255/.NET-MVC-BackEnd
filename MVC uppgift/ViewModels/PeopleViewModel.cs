@@ -10,13 +10,14 @@ namespace MVC_uppgift.ViewModels
             new People("Mickey Mouse", 2293920, "Disneyland"),
             new People("Jerry Seinfeld", 299344992, "New York")
         };
-        //public List<People> PeopleList { get; set; }
-        //public PeopleViewModel()
-        //{
-        //    PeopleList = MainList;
-        //}
+        public List<People> PeopleList { get; set; }
 
-        static public List<People> SearchPeople(string SearchInput)
+        public PeopleViewModel()
+        {
+            PeopleList = MainList;
+        }
+
+        public List<People> SearchPeople(string SearchInput)
         {
             return MainList.FindAll(People => 
                 People.Name.ToLower().Contains(SearchInput.ToLower()) 
