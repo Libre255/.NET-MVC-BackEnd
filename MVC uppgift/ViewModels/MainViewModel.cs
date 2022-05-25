@@ -2,7 +2,7 @@
 {
     public class MainViewModel
     {
-        public CreatePersonViewModel CreatePersonVM { get; set; }
-        public PeopleViewModel PeopleVM { get; set; }
+        public CreatePersonViewModel CreatePersonVM = new CreatePersonViewModel();
+        public PeopleViewModel PeopleVM  = new PeopleViewModel();
     }
 }

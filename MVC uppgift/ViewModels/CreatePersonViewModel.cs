@@ -3,6 +3,8 @@ namespace MVC_uppgift.ViewModels
 {
     public class CreatePersonViewModel
     {
+        [Key]
+        public int Id { get; set; }
         [Required(ErrorMessage ="Insert name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Insert phone number")]
