@@ -12,7 +12,7 @@ namespace MVC_uppgift.ViewModels
             PeopleList = listOfPeople.FindAll(People => 
                 People.Name.ToLower().Contains(SearchInput.ToLower()) 
                     || 
-                People.City.ToLower().Contains(SearchInput.ToLower())
+                People.City.Name.ToLower().Contains(SearchInput.ToLower())
             );
         }
     }

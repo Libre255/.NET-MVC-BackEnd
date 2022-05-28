@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MVC_uppgift.Models;
+using System.ComponentModel.DataAnnotations;
 namespace MVC_uppgift.ViewModels
 {
     public class CreatePersonViewModel
@@ -10,6 +11,6 @@ namespace MVC_uppgift.ViewModels
         [Required(ErrorMessage = "Insert phone number")]
         public int PhoneNumber { get; set; }
         [Required(ErrorMessage = "Insert City")]
-        public string City { get; set; }
+        public City City { get; set; }
     }
 }

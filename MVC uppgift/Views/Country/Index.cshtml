@@ -1,0 +1,14 @@
+﻿@using MVC_uppgift.Models;
+@model MVC_uppgift.ViewModels.CountryViewModel;
+
+<p class="fs-3 text-center">Cities</p>
+<div class="container mt-2 border border-dark w-25">
+    <div class="row bg-black text-white">
+        <div class="col d-flex justify-content-center">Id</div>
+        <div class="col d-flex justify-content-center">Name</div>
+    </div>
+    @foreach(Country Country in Model.CountryList)
+    {
+        <partial name="_Country" model="Country"/>
+    }
+</div>

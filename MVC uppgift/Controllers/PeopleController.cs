@@ -2,6 +2,7 @@
 using MVC_uppgift.ViewModels;
 using MVC_uppgift.Models;
 using MVC_uppgift.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVC_uppgift.Controllers
 {
