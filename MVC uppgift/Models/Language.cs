@@ -2,13 +2,11 @@
 
 namespace MVC_uppgift.Models
 {
-    public class City
+    public class Language
     {
         [Key]
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
-        public int CountryId { get; set; }
-        public virtual List<People> ListOfPeople { get; set; }
+        public virtual List<PeopleLanguage> PeopleLanguagues { get; set; }
     }
 }
