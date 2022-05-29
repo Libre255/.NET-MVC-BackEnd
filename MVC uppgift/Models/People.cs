@@ -13,8 +13,6 @@ namespace MVC_uppgift.Models
         public int CityId { get; set; }
         public City City { get; set; }
 
-        public int LanguageId { get; set; }
-        public Language Language { get; set; }
         public virtual List<PeopleLanguage> PeopleLanguagues { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 namespace MVC_uppgift.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPeopleCityCountryLanguageToDatabase : Migration
+    public partial class AddSeeData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,8 +66,7 @@ namespace MVC_uppgift.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    LanguageId = table.Column<int>(type: "int", nullable: false)
+                    CityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,12 +75,6 @@ namespace MVC_uppgift.Migrations
                         name: "FK_Peoples_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Peoples_Language_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Language",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -137,17 +130,29 @@ namespace MVC_uppgift.Migrations
                 {
                     { 1, 1, "Kyoto" },
                     { 2, 2, "Paris" },
-                    { 3, 3, "Gävle" }
+                    { 3, 3, "Gävle" },
+                    { 4, 1, "Hiroshima" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Peoples",
-                columns: new[] { "Id", "CityId", "LanguageId", "Name", "PhoneNumber" },
+                columns: new[] { "Id", "CityId", "Name", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, "Tony montana", 24523421 },
-                    { 2, 2, 2, "Werrever Tommorow", 345363234 },
-                    { 3, 3, 3, "Lu Xiaojun", 43523413 }
+                    { 1, 1, "Tony montana", 24523421 },
+                    { 2, 2, "Werrever Tommorow", 345363234 },
+                    { 3, 3, "Lu Xiaojun", 43523413 },
+                    { 4, 3, "Goku Sayaying", 452423 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PeopleLanguages",
+                columns: new[] { "LanguageId", "PeopleId" },
+                values: new object[,]
+                {
+                    { 2, 2 },
+                    { 1, 3 },
+                    { 1, 4 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -164,11 +169,6 @@ namespace MVC_uppgift.Migrations
                 name: "IX_Peoples_CityId",
                 table: "Peoples",
                 column: "CityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Peoples_LanguageId",
-                table: "Peoples",
-                column: "LanguageId");
         }
 
         /// <inheritdoc />
@@ -178,13 +178,13 @@ namespace MVC_uppgift.Migrations
                 name: "PeopleLanguages");
 
             migrationBuilder.DropTable(
+                name: "Language");
+
+            migrationBuilder.DropTable(
                 name: "Peoples");
 
             migrationBuilder.DropTable(
                 name: "Cities");
-
-            migrationBuilder.DropTable(
-                name: "Language");
 
             migrationBuilder.DropTable(
                 name: "Countries");

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220529073532_backtocasadae")]
-    partial class backtocasadae
+    [Migration("20220529202413_AddSeeData")]
+    partial class AddSeeData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,12 @@ namespace MVC_uppgift.Migrations
                             Id = 1,
                             CountryId = 1,
                             Name = "Kyoto"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryId = 1,
+                            Name = "Hiroshima"
                         },
                         new
                         {
@@ -145,9 +151,6 @@ namespace MVC_uppgift.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -159,8 +162,6 @@ namespace MVC_uppgift.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("LanguageId");
-
                     b.ToTable("Peoples");
 
                     b.HasData(
@@ -168,7 +169,6 @@ namespace MVC_uppgift.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            LanguageId = 1,
                             Name = "Tony montana",
                             PhoneNumber = 24523421
                         },
@@ -176,7 +176,6 @@ namespace MVC_uppgift.Migrations
                         {
                             Id = 2,
                             CityId = 2,
-                            LanguageId = 2,
                             Name = "Werrever Tommorow",
                             PhoneNumber = 345363234
                         },
@@ -184,9 +183,15 @@ namespace MVC_uppgift.Migrations
                         {
                             Id = 3,
                             CityId = 3,
-                            LanguageId = 3,
                             Name = "Lu Xiaojun",
                             PhoneNumber = 43523413
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 3,
+                            Name = "Goku Sayaying",
+                            PhoneNumber = 452423
                         });
                 });
 
@@ -203,6 +208,23 @@ namespace MVC_uppgift.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("PeopleLanguages");
+
+                    b.HasData(
+                        new
+                        {
+                            PeopleId = 3,
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            PeopleId = 4,
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            PeopleId = 2,
+                            LanguageId = 2
+                        });
                 });
 
             modelBuilder.Entity("MVC_uppgift.Models.City", b =>
@@ -222,15 +244,7 @@ namespace MVC_uppgift.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MVC_uppgift.Models.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("City");
-
-                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("MVC_uppgift.Models.PeopleLanguage", b =>

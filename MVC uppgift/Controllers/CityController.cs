@@ -17,7 +17,6 @@ namespace MVC_uppgift.Controllers
         public IActionResult Index()
         {
             CityVM.CityList = _db.Cities.ToList();
-           var obj = _db.Countries.Include(c => c.ListOfCities).ToList();
 
             return View(CityVM);
         }
