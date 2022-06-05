@@ -7,16 +7,28 @@
       <th scope="col">Name</th>
       <th scope="col">Phone Number</th>
       <th scope="col">City</th>
+      <th scope="col">Language</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
-    @foreach(People Person in Model.PeopleList)
+    @foreach(var Person in Model.PeopleList)
     {
         <tr>
             <td>@Person.Name</td>
             <td>@Person.PhoneNumber</td>
             <td>@Person.City</td>
+            <td>
+                @{
+                    if(Person.PeopleLanguagues != null)
+                    {
+                        @foreach(var language in Person.PeopleLanguagues)
+                        {
+                            <p>@language</p>;
+                        }
+                    }
+                }
+            </td>
             <td class="table-hover">
                 <a class="btn btn-danger" asp-route-InputName=@Person.Name asp-controller="People" asp-action="DeletPeople">
                     <partial name="_DeletIcon"/>

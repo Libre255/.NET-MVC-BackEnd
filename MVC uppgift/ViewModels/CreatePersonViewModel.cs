@@ -11,6 +11,10 @@ namespace MVC_uppgift.ViewModels
         [Required(ErrorMessage = "Insert phone number")]
         public int PhoneNumber { get; set; }
         [Required(ErrorMessage = "Insert City")]
-        public City City { get; set; }
+        public string City { get; set; }
+        [Required(ErrorMessage = "Insert Language")]
+        public string Language { get; set; }
+
+        public List<PeopleLanguage> PeopleLanguagues = new();
     }
 }

@@ -7,7 +7,7 @@
 namespace MVC_uppgift.Migrations
 {
     /// <inheritdoc />
-    public partial class AddSeeData : Migration
+    public partial class AddDataToDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

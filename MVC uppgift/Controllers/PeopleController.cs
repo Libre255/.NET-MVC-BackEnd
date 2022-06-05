@@ -17,7 +17,7 @@ namespace MVC_uppgift.Controllers
         }
         public ViewResult Index()
         {
-            MainVM.PeopleVM.PeopleList = _db.Peoples.ToList();
+            MainVM.PeopleVM.PeopleList = PersonViewList();
             return View(MainVM);
         }
 
@@ -26,11 +26,11 @@ namespace MVC_uppgift.Controllers
         {
             if(SearchInput != null)
             {
-                MainVM.PeopleVM.SearchPeople(SearchInput, _db.Peoples.ToList());
+                MainVM.PeopleVM.SearchPeople(SearchInput, PersonViewList());
                 return View(MainVM);
             }else
             {
-                MainVM.PeopleVM.PeopleList = _db.Peoples.ToList();
+                MainVM.PeopleVM.PeopleList = PersonViewList();
             }
             return View(MainVM);
         }
@@ -47,15 +47,45 @@ namespace MVC_uppgift.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public RedirectToActionResult AddPeople(People PersonObj)
+        public RedirectToActionResult AddPeople(CreatePersonViewModel PersonObj)
         {
             if (ModelState.IsValid)
             {
-                _db.Peoples.Add(PersonObj);
+                People P = new()
+                {
+                    Name = PersonObj.Name,
+                    City = new City() { Name = PersonObj.City },
+                    PhoneNumber = PersonObj.PhoneNumber,
+                };
+                Language L = new()
+                {
+                    Name = PersonObj.Language
+                };
+                PeopleLanguage PL = new() { Language = L, People = P };
+                P.PeopleLanguagues = new() { PL };
+
+                _db.Peoples.Add(P);
                 _db.SaveChanges();
             }
             return RedirectToAction("Index");
         }
-
+        private List<CreatePersonViewModel> PersonViewList()
+        {
+            List <CreatePersonViewModel> NewPersonList = new();
+            if(_db.Peoples != null)
+            {
+                foreach (People p in _db.Peoples.Include(peps => peps.City))
+                {
+                    NewPersonList.Add(new CreatePersonViewModel
+                    {
+                        Name = p.Name,
+                        PeopleLanguagues = p.PeopleLanguagues,
+                        City = p.City.Name,
+                        PhoneNumber = p.PhoneNumber,
+                    });
+                }
+            }
+            return NewPersonList;
+        }
     }
 }
