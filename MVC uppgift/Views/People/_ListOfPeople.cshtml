@@ -22,9 +22,12 @@
                 @{
                     if(Person.PeopleLanguagues != null)
                     {
-                        @foreach(var language in Person.PeopleLanguagues)
+                        @foreach(var L in Person.PeopleLanguagues)
                         {
-                            <p>@language</p>;
+                                if(L.Language != null)
+                                {
+                                    <p>@L.Language.Name</p>;
+                                }
                         }
                     }
                 }

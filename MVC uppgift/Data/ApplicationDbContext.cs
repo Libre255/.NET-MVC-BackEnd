@@ -17,7 +17,11 @@ namespace MVC_uppgift.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<People>()
-            .HasData(new People { Id = 1, Name = "Tony montana", PhoneNumber = 24523421, CityId = 1 });
+                        .HasData(new People { 
+                            Id = 1, 
+                            Name = "Tony montana", 
+                            PhoneNumber = 24523421, 
+                            CityId = 1});
             modelBuilder.Entity<People>()
             .HasData(new People { Id = 2, Name = "Werrever Tommorow", PhoneNumber = 345363234, CityId = 2 });
             modelBuilder.Entity<People>()
@@ -44,6 +48,7 @@ namespace MVC_uppgift.Data
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 1, PeopleId = 3 });
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 1, PeopleId = 4 });
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 2, PeopleId = 2 });
+            modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 3, PeopleId = 1 });
         }
     }
 }

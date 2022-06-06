@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using MVC_uppgift.Models;
 namespace MVC_uppgift.Controllers
 {

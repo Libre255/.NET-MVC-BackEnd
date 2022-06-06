@@ -51,10 +51,12 @@ namespace MVC_uppgift.Controllers
         {
             if (ModelState.IsValid)
             {
+                City C = new() { Name = PersonObj.City, CountryId = 1};
+
                 People P = new()
                 {
                     Name = PersonObj.Name,
-                    City = new City() { Name = PersonObj.City },
+                    City = C,
                     PhoneNumber = PersonObj.PhoneNumber,
                 };
                 Language L = new()
@@ -71,10 +73,12 @@ namespace MVC_uppgift.Controllers
         }
         private List<CreatePersonViewModel> PersonViewList()
         {
+            var dbMain = _db.Peoples.Include(peps => peps.City).Include(PL => PL.PeopleLanguagues).ThenInclude(L => L.Language);
+
             List <CreatePersonViewModel> NewPersonList = new();
             if(_db.Peoples != null)
             {
-                foreach (People p in _db.Peoples.Include(peps => peps.City))
+                foreach (People p in dbMain)
                 {
                     NewPersonList.Add(new CreatePersonViewModel
                     {

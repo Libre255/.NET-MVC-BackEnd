@@ -14,6 +14,7 @@ namespace MVC_uppgift.ViewModels
         public string City { get; set; }
         [Required(ErrorMessage = "Insert Language")]
         public string Language { get; set; }
+        [Required(ErrorMessage = "Insert Country")]
 
         public List<PeopleLanguage> PeopleLanguagues = new();
     }
