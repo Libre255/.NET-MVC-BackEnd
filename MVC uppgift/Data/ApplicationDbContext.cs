@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC_uppgift.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MVC_uppgift.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext:IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options){}
         public DbSet<People> Peoples { get; set; }
         public DbSet<City>Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -16,6 +15,7 @@ namespace MVC_uppgift.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<People>()
                         .HasData(new People { 
                             Id = 1, 

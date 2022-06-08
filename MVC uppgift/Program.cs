@@ -1,12 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using MVC_uppgift.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddSession(options =>
 {
@@ -27,5 +31,7 @@ app.MapControllerRoute(name: "People", pattern: "People/{action}", defaults: new
 app.MapControllerRoute(name: "City", pattern: "City/{action}", defaults: new { controller = "City", action = "Index" });
 app.MapControllerRoute(name: "Country", pattern: "Country/{action}", defaults: new { controller = "Country", action = "Index" });
 app.MapControllerRoute(name: "Language", pattern: "Language/{action}", defaults: new { controller = "Language", action = "Index" });
+app.UseAuthentication();
+app.MapRazorPages();
 
 app.Run();
