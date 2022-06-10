@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC_uppgift.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVC_uppgift.Data
 {
@@ -12,6 +14,7 @@ namespace MVC_uppgift.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Language> Language { get; set; }
         public DbSet<PeopleLanguage> PeopleLanguages { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +52,37 @@ namespace MVC_uppgift.Data
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 1, PeopleId = 4 });
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 2, PeopleId = 2 });
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 3, PeopleId = 1 });
+
+            modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfig());
+
+            string roleId = Guid.NewGuid().ToString();
+            string userRoleId = Guid.NewGuid().ToString();
+            string userId = Guid.NewGuid().ToString();
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = roleId,
+                    Name="Admin",
+                    NormalizedName = "ADMIN"
+                }
+            );
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = userRoleId,
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            );
+        }
+    }
+    public class ApplicationUserEntityConfig : IEntityTypeConfiguration<ApplicationUser>
+    {
+        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        {
+            builder.Property(u => u.FirstName).HasMaxLength(255);
+            builder.Property(u => u.LastName).HasMaxLength(255);
         }
     }
 }

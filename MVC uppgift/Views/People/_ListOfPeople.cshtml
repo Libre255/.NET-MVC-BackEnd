@@ -1,7 +1,7 @@
 ﻿@using MVC_uppgift.Models;
 @model MVC_uppgift.ViewModels.PeopleViewModel;
 
-<table class="table table-dark table-hover ">
+<table id="tableOfPeople" class="table table-dark table-hover ">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -36,8 +36,13 @@
                 <a class="btn btn-danger" asp-route-InputName=@Person.Name asp-controller="People" asp-action="DeletPeople">
                     <partial name="_DeletIcon"/>
                 </a>
+                <a  asp-route-InputName=@Person.Id asp-controller="People" asp-action="EditPeople"
+                    class="btn btn-info" onclick="showModal()" >
+                    <partial name="_EditIcon"/>
+                </a>
             </td> 
         </tr>
+ 
     }
   </tbody>
 </table>

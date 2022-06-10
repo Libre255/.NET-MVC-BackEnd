@@ -71,6 +71,20 @@ namespace MVC_uppgift.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [StringLength(255, ErrorMessage = "First name should have max of 255 characters")]
+            [Display(Name = "Firstname")]
+            public string FirstName { get; set; }
+            [Required]
+            [StringLength(255, ErrorMessage = "Last name should have max of 255 characters")]
+            [Display(Name = "Lastname")]
+            public string LastName { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Birthdate")]
+            public string Birthdate { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -113,7 +127,10 @@ namespace MVC_uppgift.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                ApplicationUser user = CreateUser();
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;   
+                user.Birthdate = Input.Birthdate.ToString();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -121,6 +138,7 @@ namespace MVC_uppgift.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "User");
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

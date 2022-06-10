@@ -17,7 +17,7 @@ namespace MVC_uppgift.Controllers
         }
         public ViewResult Index()
         {
-            MainVM.PeopleVM.PeopleList = PersonViewList();
+            MainVM.PeopleVM.PeopleList = MainVM.PeopleVM.PersonViewList(_db);
             return View(MainVM);
         }
 
@@ -26,11 +26,11 @@ namespace MVC_uppgift.Controllers
         {
             if(SearchInput != null)
             {
-                MainVM.PeopleVM.SearchPeople(SearchInput, PersonViewList());
+                MainVM.PeopleVM.SearchPeople(SearchInput, MainVM.PeopleVM.PersonViewList(_db));
                 return View(MainVM);
             }else
             {
-                MainVM.PeopleVM.PeopleList = PersonViewList();
+                MainVM.PeopleVM.PeopleList = MainVM.PeopleVM.PersonViewList(_db);
             }
             return View(MainVM);
         }
@@ -43,6 +43,11 @@ namespace MVC_uppgift.Controllers
                 _db.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+        public PartialViewResult EditPeople(CreatePersonViewModel InputName)
+        {
+            
+            return PartialView("_DetailsOfPeople", InputName);
         }
 
         [HttpPost]
@@ -71,25 +76,6 @@ namespace MVC_uppgift.Controllers
             }
             return RedirectToAction("Index");
         }
-        private List<CreatePersonViewModel> PersonViewList()
-        {
-            var dbMain = _db.Peoples.Include(peps => peps.City).Include(PL => PL.PeopleLanguagues).ThenInclude(L => L.Language);
-
-            List <CreatePersonViewModel> NewPersonList = new();
-            if(_db.Peoples != null)
-            {
-                foreach (People p in dbMain)
-                {
-                    NewPersonList.Add(new CreatePersonViewModel
-                    {
-                        Name = p.Name,
-                        PeopleLanguagues = p.PeopleLanguagues,
-                        City = p.City.Name,
-                        PhoneNumber = p.PhoneNumber,
-                    });
-                }
-            }
-            return NewPersonList;
-        }
+        
     }
 }
