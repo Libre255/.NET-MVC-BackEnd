@@ -44,11 +44,6 @@ namespace MVC_uppgift.Controllers
             }
             return RedirectToAction("Index");
         }
-        public PartialViewResult EditPeople(CreatePersonViewModel InputName)
-        {
-            
-            return PartialView("_DetailsOfPeople", InputName);
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,6 +71,22 @@ namespace MVC_uppgift.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
+        [Route("People/EditPeople/{Id}")]
+        public IActionResult EditPeople(int Id)
+        {
+            MainVM.PeopleVM.PeopleList = MainVM.PeopleVM.PersonViewList(_db);
+            var person = MainVM.PeopleVM.PeopleList.Where(x => x.Id == Id).FirstOrDefault();
+            CreatePersonViewModel P = new()
+            {
+                Name = person.Name,
+                PhoneNumber = person.PhoneNumber,
+                City = person.City,
+                Language = "Spanish"
+            };
+            return PartialView("_EditPeople", P);
+        }
+
+
     }
 }

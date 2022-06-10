@@ -29,6 +29,7 @@ namespace MVC_uppgift.ViewModels
                 {
                     NewPersonList.Add(new CreatePersonViewModel
                     {
+                        Id = p.Id,
                         Name = p.Name,
                         PeopleLanguagues = p.PeopleLanguagues,
                         City = p.City.Name,

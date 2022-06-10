@@ -1,13 +1,15 @@
-﻿var url = "/People/EditPeople";
-function showModal() {
-    console.log("aaaa");
-    //$.ajax({
-    //    url: url,
-    //    dataType: 'html',
-    //    success: function (data) {
+﻿$(function() {
 
-    //        $('#tableOfPeople').html(data);
-    //        $('#editPeopleModal').modal('show');
-    //    }
-    //});
-}
+    var modalDiv = $('#modelDiv');
+    $('a[data-toggle="ajax-modal"]').click(function (event) {
+
+        var url = $(this).data('url');
+        var decodeUrl = decodeURIComponent(url);
+        $.get(decodeUrl).done(function (data) {
+            modalDiv.html(data);
+            modalDiv.find('.modal').modal('show');
+        })
+    })
+})
+
+console.log("dddd")
