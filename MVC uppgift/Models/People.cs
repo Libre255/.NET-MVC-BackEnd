@@ -12,8 +12,9 @@ namespace MVC_uppgift.Models
         [Required]
         public string City { get; set; }
         
-        public People(string name, int phone, string city)
+        public People(int Id, string name, int phone, string city)
         {
+            ID = Id;
             Name = name;
             PhoneNumber = phone;
             City = city;

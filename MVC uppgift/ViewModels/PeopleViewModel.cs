@@ -6,9 +6,9 @@ namespace MVC_uppgift.ViewModels
     {
         static public List<People> MainList = new List<People>()
         {
-            new People("Crypto Papi", 90044430, "Narnia"),
-            new People("Mickey Mouse", 2293920, "Disneyland"),
-            new People("Jerry Seinfeld", 299344992, "New York")
+            new People(0, "Crypto Papi", 90044430, "Narnia"),
+            new People(1, "Mickey Mouse", 2293920, "Disneyland"),
+            new People(2,"Jerry Seinfeld", 299344992, "New York")
         };
         public List<People> PeopleList { get; set; }
 

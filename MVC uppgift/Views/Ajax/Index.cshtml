@@ -1,13 +1,18 @@
-﻿<div class="mb-3 d-flex justify-content-center mt-2 gap-3 m-auto w-50">
+﻿
+<div class="mb-3 d-flex justify-content-center mt-2 gap-3 m-auto w-50">
     
     <button type="button" class="btn btn-primary mb-3" onclick="ShowPeopleList()">People</button>
 
     <div class="input-group mb-3">
-      <button onclick="ShowOnePerson()" type="button" class="btn btn-info input-group-text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button onclick="PersonDetails()" type="button" class="btn btn-info input-group-text"
+              data-bs-toggle="modal" data-bs-target="#exampleModal">
         Details
       </button>
-      <input id="detailsInput" type="number" class="form-control" placeholder="Insert user id" aria-label="Insert user id" aria-describedby="button-addon2">
-      <button onclick="DeletPersona()" class="btn btn-outline-danger" type="button" id="button-addon2">Delet</button>
+      <input id="detailsInput" type="number" class="form-control" value=@null
+             placeholder="Insert user id" aria-label="Insert user id" aria-describedby="button-addon2">
+      <button onclick="DeletPersona()" class="btn btn-outline-danger" type="button" id="button-addon2">
+          Delet
+      </button>
     </div>
 
 </div>

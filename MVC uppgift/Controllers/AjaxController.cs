@@ -16,23 +16,23 @@ namespace MVC_uppgift.Controllers
         {
             return PartialView("_ListOfPeople", PeopleVM);
         }
-        public IActionResult ShowPerson(int IdNumber)
+        public IActionResult PersonDetails(int IdNumber)
         {
-            int PersonIndex = PeopleVM.PeopleList.FindIndex(p => p.ID == IdNumber);
-            if(PersonIndex >= 0)
+            var SelectedPerson = PeopleVM.PeopleList.Where(p => p.ID == IdNumber).FirstOrDefault();
+            if(SelectedPerson != null)
             {
-                return PartialView("_PersonView", PeopleVM.PeopleList[PersonIndex]);
+                return PartialView("_PersonView", SelectedPerson);
             }
-            return PartialView("_DetailsModalMsg", "Could not find the person or that ID dont exists");
+                return PartialView("_DetailsModalMsg", "Could not find the person or that ID dont exists");
         }
         public IActionResult DeletPerson(int IdNumber)
         {
-            People? itemRemove = PeopleViewModel.MainList.SingleOrDefault(x => x.ID == IdNumber);
+            var SelectedPerson = PeopleVM.PeopleList.Where(p => p.ID == IdNumber).FirstOrDefault();
 
-            if (itemRemove != null)
+            if (SelectedPerson != null)
             {
-                PeopleViewModel.MainList.Remove(itemRemove);
-                return PartialView("_DetailsModalMsg", $"The user {itemRemove.Name} with the ID of {itemRemove.ID} has been removed");
+                PeopleViewModel.MainList.Remove(SelectedPerson);
+                return PartialView("_DetailsModalMsg", $"The user {SelectedPerson.Name} with the ID of {SelectedPerson.ID} has been removed");
             }
 
             return PartialView("_DetailsModalMsg", "Could not find the person or that ID dont exists");

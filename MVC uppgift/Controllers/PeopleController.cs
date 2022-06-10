@@ -38,7 +38,7 @@ namespace MVC_uppgift.Controllers
         {
             if (ModelState.IsValid)
             {
-                PeopleViewModel.MainList.Add(new People(PersonObj.Name, PersonObj.PhoneNumber, PersonObj.City));
+                PeopleViewModel.MainList.Add(new People(Guid.NewGuid().GetHashCode(), PersonObj.Name, PersonObj.PhoneNumber, PersonObj.City));
             }
             return RedirectToAction("Index");
         }

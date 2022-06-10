@@ -1,4 +1,5 @@
 ﻿function ShowPeopleList() {
+    document.getElementById("detailsInput").value = ""
     $.ajax({
         type: "GET",
         url: "/Ajax/ShowList/",
@@ -10,21 +11,26 @@
     });
 }
 
-function ShowOnePerson() {
+function PersonDetails() {
     var IdNumber = document.getElementById("detailsInput").value;
-    $.ajax({
-        type: "GET",
-        url: "/Ajax/ShowPerson/",
-        data: { IdNumber: IdNumber },
-        success: function (PartialView) {
+    console.log(IdNumber)
+    if (IdNumber !== "") {
+        $.ajax({
+            type: "GET",
+            url: "/Ajax/PersonDetails/",
+            data: { IdNumber: IdNumber },
+            success: function (PartialView) {
 
-            $(".mainContent").html(PartialView); 
-        },
-        error: function (errorData) { console.log(errorData) }
-    });
+                $(".mainContent").html(PartialView); 
+            },
+            error: function (errorData) { console.log(errorData) }
+        });
+        console.log("Worksss")
+    }
 }
 
 function DeletPersona() {
+
     var IdNumber = document.getElementById("detailsInput").value;
     console.log("A")
     $.ajax({
@@ -37,4 +43,5 @@ function DeletPersona() {
         },
         error: function (errorData) { console.log(errorData) }
     });
+    document.getElementById("detailsInput").value = ""
 }
