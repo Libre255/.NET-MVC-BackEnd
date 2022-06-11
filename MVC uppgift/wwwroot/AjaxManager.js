@@ -13,33 +13,29 @@
 
 function PersonDetails() {
     var IdNumber = document.getElementById("detailsInput").value;
-    console.log(IdNumber)
     if (IdNumber !== "") {
         $.ajax({
             type: "GET",
             url: "/Ajax/PersonDetails/",
             data: { IdNumber: IdNumber },
             success: function (PartialView) {
-
-                $(".mainContent").html(PartialView); 
+                $(".mainContent").html(PartialView).find('.modal').modal('show'); 
             },
             error: function (errorData) { console.log(errorData) }
         });
-        console.log("Worksss")
     }
 }
 
-function DeletPersona() {
+function DeletPerson() {
 
     var IdNumber = document.getElementById("detailsInput").value;
-    console.log("A")
     $.ajax({
         type: "GET",
         url: "/Ajax/DeletPerson/",
         data: { IdNumber: IdNumber },
         success: function (PartialView) {
 
-            $(".mainContent").html(PartialView);
+            $(".mainContent").html(PartialView).find('.modal').modal('show');
         },
         error: function (errorData) { console.log(errorData) }
     });

@@ -4,13 +4,12 @@
     <button type="button" class="btn btn-primary mb-3" onclick="ShowPeopleList()">People</button>
 
     <div class="input-group mb-3">
-      <button onclick="PersonDetails()" type="button" class="btn btn-info input-group-text"
-              data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-info input-group-text" onclick="PersonDetails()">
         Details
       </button>
       <input id="detailsInput" type="number" class="form-control" value=@null
              placeholder="Insert user id" aria-label="Insert user id" aria-describedby="button-addon2">
-      <button onclick="DeletPersona()" class="btn btn-outline-danger" type="button" id="button-addon2">
+      <button onclick="DeletPerson()" class="btn btn-outline-danger" type="button" >
           Delet
       </button>
     </div>

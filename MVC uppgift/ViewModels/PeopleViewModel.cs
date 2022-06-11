@@ -16,7 +16,7 @@ namespace MVC_uppgift.ViewModels
         {
             PeopleList = MainList;
         }
-
+        public People SelectAPeople(int Id) => PeopleList.FirstOrDefault(p => p.ID == Id);
         public List<People> SearchPeople(string SearchInput)
         {
             return MainList.FindAll(People => 

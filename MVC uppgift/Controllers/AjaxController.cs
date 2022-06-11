@@ -18,16 +18,16 @@ namespace MVC_uppgift.Controllers
         }
         public IActionResult PersonDetails(int IdNumber)
         {
-            var SelectedPerson = PeopleVM.PeopleList.Where(p => p.ID == IdNumber).FirstOrDefault();
-            if(SelectedPerson != null)
+            var SelectedPerson = PeopleVM.SelectAPeople(IdNumber);
+            if (SelectedPerson != null)
             {
                 return PartialView("_PersonView", SelectedPerson);
             }
-                return PartialView("_DetailsModalMsg", "Could not find the person or that ID dont exists");
+            return PartialView("_DetailsModalMsg", "Could not find the person or that ID dont exists");
         }
         public IActionResult DeletPerson(int IdNumber)
         {
-            var SelectedPerson = PeopleVM.PeopleList.Where(p => p.ID == IdNumber).FirstOrDefault();
+            var SelectedPerson = PeopleVM.SelectAPeople(IdNumber);
 
             if (SelectedPerson != null)
             {
