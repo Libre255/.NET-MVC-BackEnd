@@ -1,0 +1,21 @@
+﻿
+@model MVC_uppgift.ViewModels.MainViewModel;
+
+<div class="mb-3 row g-2 mt-2">
+    <form class="col-auto border-dark" asp-controller="People" asp-action="Index">
+        <input class="form-control" name="SearchInput" list="ListOfPeople" placeholder="Search people">
+    </form>
+
+    <div class="col"></div>
+
+    <div class="col-auto dropdown">
+      <button style="width:14.5vw" class="btn btn-success dropdown-toggle" 
+              type="button"  data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        Add people
+      </button>
+      <partial name="_CreatePerson" model="Model.CreatePersonVM" />
+    </div>
+</div>
+
+<partial name="_ListOfPeople" model="Model.PeopleVM"/>
+

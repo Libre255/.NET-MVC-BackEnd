@@ -4,37 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css" />
+    
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <header>
-       <img src="/logo.png" width="100vw"/>
-        <menu>
-            <li>
-                <a asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="About">About</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="Contact">Contact</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="Projects">Projects</a>
-            </li>
-            <li>
-                <a asp-controller="Doctor" asp-action="FeverCheck">Fever Check</a>
-            </li>
-            <li>
-                <a asp-controller="Game" asp-action="GuessingGame">Guessing Game</a>
-            </li>
-        </menu>
-    </header>
-    <main>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" asp-controller="Home" 
+                       asp-action="Index"><img src="/logo.png" width="100vw"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" 
+                       aria-current="page" 
+                       asp-controller="Home" 
+                       asp-action="Index">Home</a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  asp-controller="Home" asp-action="Contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  asp-controller="Home" asp-action="Projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  asp-controller="Doctor" asp-action="FeverCheck">Fever Check</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  asp-controller="Game" asp-action="GuessingGame">Guessing Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  asp-controller="People" asp-action="Index">People</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <main class="container" style="height:75vh" >
         @RenderBody()
     </main>
-    <footer>
+    <footer class="text-center text-bg-dark p-4 mt-5 rounded-pill w-75 container">
         @DateTime.Today.ToString("d") Brian Veliz
     </footer>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"  > </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" ></script>
 </body>
 </html>
