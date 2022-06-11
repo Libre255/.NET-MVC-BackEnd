@@ -7,7 +7,7 @@
 namespace MVC_uppgift.Migrations
 {
     /// <inheritdoc />
-    public partial class AddDataToDB : Migration
+    public partial class addDataToDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -150,6 +150,7 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "LanguageId", "PeopleId" },
                 values: new object[,]
                 {
+                    { 3, 1 },
                     { 2, 2 },
                     { 1, 3 },
                     { 1, 4 }

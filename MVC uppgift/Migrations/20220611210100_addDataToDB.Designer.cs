@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220605224003_AddDataToDB")]
-    partial class AddDataToDB
+    [Migration("20220611210100_addDataToDB")]
+    partial class addDataToDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,6 +224,11 @@ namespace MVC_uppgift.Migrations
                         {
                             PeopleId = 2,
                             LanguageId = 2
+                        },
+                        new
+                        {
+                            PeopleId = 1,
+                            LanguageId = 3
                         });
                 });
 

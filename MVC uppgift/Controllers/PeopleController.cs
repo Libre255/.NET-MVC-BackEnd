@@ -14,6 +14,14 @@ namespace MVC_uppgift.Controllers
         public PeopleController(ApplicationDbContext db)
         {
             _db = db;
+            foreach(var city in _db.Cities)
+            {
+                MainVM.CreatePersonVM.ListOfCities.Add(city);
+            }
+            foreach (var language in _db.Language)
+            {
+                MainVM.CreatePersonVM.ListOfLanguages.Add(language);
+            }
         }
         public ViewResult Index()
         {
@@ -49,22 +57,19 @@ namespace MVC_uppgift.Controllers
         [ValidateAntiForgeryToken]
         public RedirectToActionResult AddPeople(CreatePersonViewModel PersonObj)
         {
+
+            City cityId = _db.Cities.SingleOrDefault(cityInfo => cityInfo.Name == PersonObj.City);
+            Language languageId = _db.Language.SingleOrDefault(L => L.Name == PersonObj.Language);
+
             if (ModelState.IsValid)
             {
-                City C = new() { Name = PersonObj.City, CountryId = 1};
-
                 People P = new()
                 {
                     Name = PersonObj.Name,
-                    City = C,
-                    PhoneNumber = PersonObj.PhoneNumber,
+                    CityId = cityId.Id,
+                    PhoneNumber = PersonObj.PhoneNumber
                 };
-                Language L = new()
-                {
-                    Name = PersonObj.Language
-                };
-                PeopleLanguage PL = new() { Language = L, People = P };
-                P.PeopleLanguagues = new() { PL };
+                P.PeopleLanguagues = new() { new PeopleLanguage { LanguageId = languageId.Id, People = P } };
 
                 _db.Peoples.Add(P);
                 _db.SaveChanges();
@@ -76,17 +81,23 @@ namespace MVC_uppgift.Controllers
             var dbMain = _db.Peoples.Include(peps => peps.City).Include(PL => PL.PeopleLanguagues).ThenInclude(L => L.Language);
 
             List <CreatePersonViewModel> NewPersonList = new();
+
             if(_db.Peoples != null)
             {
                 foreach (People p in dbMain)
                 {
+                    List<Language> LanguageList = new();
+                    foreach(var L in p.PeopleLanguagues)
+                    {
+                        LanguageList.Add(L.Language);
+                    }
                     NewPersonList.Add(new CreatePersonViewModel
                     {
                         Name = p.Name,
-                        PeopleLanguagues = p.PeopleLanguagues,
+                        ListOfLanguages = LanguageList,
                         City = p.City.Name,
                         PhoneNumber = p.PhoneNumber,
-                    });
+                    }); ;
                 }
             }
             return NewPersonList;

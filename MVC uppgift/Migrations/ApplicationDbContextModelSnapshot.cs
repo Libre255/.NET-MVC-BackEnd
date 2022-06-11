@@ -221,6 +221,11 @@ namespace MVC_uppgift.Migrations
                         {
                             PeopleId = 2,
                             LanguageId = 2
+                        },
+                        new
+                        {
+                            PeopleId = 1,
+                            LanguageId = 3
                         });
                 });
 

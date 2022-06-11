@@ -14,12 +14,22 @@
     </div>
     <div class="mb-3">
         <label for="City" class="form-label">City</label>
-        <input type="text" class="form-control" id="City" asp-for="City">
+        <select asp-for="City" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            @foreach(var city in @Model.ListOfCities)
+            {
+                <option value=@city.Name>@city.Name</option>
+            }
+        </select>
         <span asp-validation-for="City" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="Language" class="form-label">Language</label>
-        <input type="text" class="form-control" id="Language" asp-for="Language">
+        <select asp-for="Language" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            @foreach(var Language in @Model.ListOfLanguages)
+            {
+                <option value=@Language.Name>@Language.Name</option>
+            }
+        </select>
         <span asp-validation-for="Language" class="text-danger"></span>
     </div>
        

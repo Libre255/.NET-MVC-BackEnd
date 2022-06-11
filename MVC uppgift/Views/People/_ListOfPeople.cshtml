@@ -20,13 +20,13 @@
             <td>@Person.City</td>
             <td>
                 @{
-                    if(Person.PeopleLanguagues != null)
+                    if(Person.ListOfLanguages != null)
                     {
-                        @foreach(var L in Person.PeopleLanguagues)
+                        @foreach(var L in Person.ListOfLanguages)
                         {
-                                if(L.Language != null)
+                                if(L.Name != null)
                                 {
-                                    <p>@L.Language.Name</p>;
+                                   <span>[@L.Name] </span>
                                 }
                         }
                     }
