@@ -55,14 +55,14 @@ namespace MVC_uppgift.Data
 
             modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfig());
 
-            string roleId = Guid.NewGuid().ToString();
+            string adminRoleId = Guid.NewGuid().ToString();
             string userRoleId = Guid.NewGuid().ToString();
-            string userId = Guid.NewGuid().ToString();
+            string adminID = Guid.NewGuid().ToString();
 
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
-                    Id = roleId,
+                    Id = adminRoleId,
                     Name="Admin",
                     NormalizedName = "ADMIN"
                 }
@@ -75,6 +75,31 @@ namespace MVC_uppgift.Data
                     NormalizedName = "USER"
                 }
             );
+            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    Id = adminID,
+                    Email = "admin@admin.com",
+                    NormalizedEmail = "ADMIN@ADMIN.COM",
+                    UserName = "admin@admin.com",
+                    NormalizedUserName = "ADMIN@ADMIN.COM",
+                    FirstName = "Adminsson",
+                    LastName = "Headersson",
+                    Birthdate = "02/02/02",
+                    PasswordHash = hasher.HashPassword(null, "password")
+                }
+            );
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+
+                new IdentityUserRole<string>
+                {
+                   RoleId = adminRoleId,
+                   UserId = adminID
+                }
+            );
+
+
         }
     }
     public class ApplicationUserEntityConfig : IEntityTypeConfiguration<ApplicationUser>

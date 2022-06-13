@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220609132057_addIdentity")]
-    partial class addIdentity
+    [Migration("20220613172750_addFlagAsAdmin")]
+    partial class addFlagAsAdmin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,22 @@ namespace MVC_uppgift.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0f215c86-f595-4eb9-b5b3-f834779bc17c",
+                            ConcurrencyStamp = "9b08e861-6f28-4c22-bea6-e8b0865c51e0",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "3abdd239-6420-4057-9559-3d5d4198ed82",
+                            ConcurrencyStamp = "e33813c7-2de5-457b-b00e-9a7916c97cf5",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -138,6 +154,13 @@ namespace MVC_uppgift.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "8590df00-79e8-4492-b7af-2ebd2cda26b8",
+                            RoleId = "0f215c86-f595-4eb9-b5b3-f834779bc17c"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -169,8 +192,7 @@ namespace MVC_uppgift.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("BirthData")
-                        .IsRequired()
+                    b.Property<string>("Birthdate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -185,12 +207,13 @@ namespace MVC_uppgift.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("FlagAsAdmin")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -238,6 +261,28 @@ namespace MVC_uppgift.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8590df00-79e8-4492-b7af-2ebd2cda26b8",
+                            AccessFailedCount = 0,
+                            Birthdate = "02/02/02",
+                            ConcurrencyStamp = "7d54507d-aab8-431f-a874-98df75079dae",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Adminsson",
+                            FlagAsAdmin = false,
+                            LastName = "Headersson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHdt7Au7HT04gnoAQpInCG3hNfzyNiG7ulItRJiXsMflJjWgwShIrINI420pEwSycQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "75273ad5-87c4-4c17-933f-cce6191cc67a",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        });
                 });
 
             modelBuilder.Entity("MVC_uppgift.Models.City", b =>

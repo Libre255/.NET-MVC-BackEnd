@@ -20,22 +20,24 @@
             <td>@Person.City</td>
             <td>
                 @{
-                    if(Person.PeopleLanguagues != null)
+                    if(Person.ListOfLanguages != null)
                     {
-                        @foreach(var L in Person.PeopleLanguagues)
+                            @foreach(var L in Person.ListOfLanguages)
                         {
-                                if(L.Language != null)
+                                if(L.Name != null)
                                 {
-                                    <p>@L.Language.Name</p>;
+                                       <span>[@L.Name] </span>
                                 }
                         }
                     }
                 }
             </td>
             <td class="table-hover">
-                <a class="btn btn-danger" asp-route-InputName=@Person.Name asp-controller="People" asp-action="DeletPeople">
-                    <partial name="_DeletIcon"/>
-                </a>
+                @if(User.IsInRole("Admin")){
+                    <a class="btn btn-danger" asp-route-InputName=@Person.Name asp-controller="People" asp-action="DeletPeople">
+                        <partial name="_DeletIcon"/>
+                    </a>
+                }
                 <a class="btn btn-info"
                     data-toggle="ajax-modal" data-target="#editPeopleModal" data-url=@Url.Action($"EditPeople/{Person.Id}") >
                     <partial name="_EditIcon"/>

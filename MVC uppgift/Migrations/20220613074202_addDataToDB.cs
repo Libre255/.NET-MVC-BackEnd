@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_uppgift.Migrations
 {
-    public partial class addIdentity : Migration
+    public partial class addDataToDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,9 @@ namespace MVC_uppgift.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    BirthData = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Birthdate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -49,6 +49,32 @@ namespace MVC_uppgift.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Language",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Language", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,10 +183,142 @@ namespace MVC_uppgift.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CountryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cities_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Peoples",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Peoples", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Peoples_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PeopleLanguages",
+                columns: table => new
+                {
+                    LanguageId = table.Column<int>(type: "int", nullable: false),
+                    PeopleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PeopleLanguages", x => new { x.PeopleId, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_PeopleLanguages_Language_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Language",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PeopleLanguages_Peoples_PeopleId",
+                        column: x => x.PeopleId,
+                        principalTable: "Peoples",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "5763594a-a58b-4e24-9af0-82c75de7683a", "99ad9889-66a5-4fab-a9c9-d67d26fefb2d", "User", "USER" },
+                    { "f173608f-f1d0-4f5c-8634-1494d6858170", "ba294d53-1f06-45da-9b62-193e1b7c48d5", "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "f28e0df5-33f5-4fc2-9928-08273241c8b4", 0, "02/02/02", "991c7da6-1b27-4cbc-9aa7-6998c3dcb6ae", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEJ/Du4ldpPy7R9LeUwqhbSqCCY3GWeTUaGMvSiRkr1B6GGaiFh9noJKPvvfiF+NyUg==", null, false, "1f91bc36-3e09-46fb-8ac5-f96858ffb5d5", false, "admin@admin.com" });
+
+            migrationBuilder.InsertData(
+                table: "Countries",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Japan" },
+                    { 2, "France" },
+                    { 3, "Sweden" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Language",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Japanese" },
+                    { 2, "French" },
+                    { 3, "Swedish" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "f173608f-f1d0-4f5c-8634-1494d6858170", "f28e0df5-33f5-4fc2-9928-08273241c8b4" });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "CountryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Kyoto" },
+                    { 2, 2, "Paris" },
+                    { 3, 3, "Gävle" },
+                    { 4, 1, "Hiroshima" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Peoples",
+                columns: new[] { "Id", "CityId", "Name", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, 1, "Tony montana", 24523421 },
+                    { 2, 2, "Werrever Tommorow", 345363234 },
+                    { 3, 3, "Lu Xiaojun", 43523413 },
+                    { 4, 3, "Goku Sayaying", 452423 }
+                });
+
             migrationBuilder.InsertData(
                 table: "PeopleLanguages",
                 columns: new[] { "LanguageId", "PeopleId" },
-                values: new object[] { 3, 1 });
+                values: new object[,]
+                {
+                    { 3, 1 },
+                    { 2, 2 },
+                    { 1, 3 },
+                    { 1, 4 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -200,6 +358,21 @@ namespace MVC_uppgift.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cities_CountryId",
+                table: "Cities",
+                column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PeopleLanguages_LanguageId",
+                table: "PeopleLanguages",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Peoples_CityId",
+                table: "Peoples",
+                column: "CityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -220,15 +393,25 @@ namespace MVC_uppgift.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "PeopleLanguages");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.DeleteData(
-                table: "PeopleLanguages",
-                keyColumns: new[] { "LanguageId", "PeopleId" },
-                keyValues: new object[] { 3, 1 });
+            migrationBuilder.DropTable(
+                name: "Language");
+
+            migrationBuilder.DropTable(
+                name: "Peoples");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

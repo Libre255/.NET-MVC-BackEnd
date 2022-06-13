@@ -24,30 +24,41 @@
                        asp-controller="Home" 
                        asp-action="Index">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Random pages</a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item ">
+                            <a class="nav-link dropdown-item text-dark" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-item text-dark"  asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-item text-dark"  asp-controller="Home" asp-action="Projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-item text-dark"  asp-controller="Doctor" asp-action="FeverCheck">Fever Check</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-item text-dark"  asp-controller="Game" asp-action="GuessingGame">Guessing Game</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="Home" asp-action="Contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="Home" asp-action="Projects">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="Doctor" asp-action="FeverCheck">Fever Check</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="Game" asp-action="GuessingGame">Guessing Game</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="People" asp-action="Index">People</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="City" asp-action="Index">Cities</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  asp-controller="Country" asp-action="Index">Countries</a>
-                </li>
+                @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"  asp-controller="People" asp-action="Index">People</a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link"  asp-controller="City" asp-action="Index">Cities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  asp-controller="Country" asp-action="Index">Countries</a>
+                        </li>
+                    }
+                }
                 <partial name="_LoginPartial" />
             </ul>
         </div>

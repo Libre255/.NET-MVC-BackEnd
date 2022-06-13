@@ -85,6 +85,10 @@ namespace MVC_uppgift.Areas.Identity.Pages.Account
             [Display(Name = "Birthdate")]
             public string Birthdate { get; set; }
 
+            [Required]
+            [Display(Name = "Flag as admin")]
+            public bool FlaggedAdmin { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -131,6 +135,7 @@ namespace MVC_uppgift.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;   
                 user.Birthdate = Input.Birthdate.ToString();
+                user.FlagAsAdmin = Input.FlaggedAdmin;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -138,9 +143,16 @@ namespace MVC_uppgift.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "User");
                     _logger.LogInformation("User created a new account with password.");
 
+                    if (user.FlagAsAdmin)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

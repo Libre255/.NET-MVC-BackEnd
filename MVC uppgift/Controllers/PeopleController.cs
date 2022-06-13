@@ -3,9 +3,11 @@ using MVC_uppgift.ViewModels;
 using MVC_uppgift.Models;
 using MVC_uppgift.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVC_uppgift.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
     public class PeopleController : Controller
     {
         public readonly ApplicationDbContext _db;
@@ -14,7 +16,16 @@ namespace MVC_uppgift.Controllers
         public PeopleController(ApplicationDbContext db)
         {
             _db = db;
+            foreach(var city in _db.Cities)
+            {
+                MainVM.CreatePersonVM.ListOfCities.Add(city);
+            }
+            foreach (var language in _db.Language)
+            {
+                MainVM.CreatePersonVM.ListOfLanguages.Add(language);
+            }
         }
+        
         public ViewResult Index()
         {
             MainVM.PeopleVM.PeopleList = MainVM.PeopleVM.PersonViewList(_db);
@@ -49,22 +60,19 @@ namespace MVC_uppgift.Controllers
         [ValidateAntiForgeryToken]
         public RedirectToActionResult AddPeople(CreatePersonViewModel PersonObj)
         {
+
+            City cityId = _db.Cities.SingleOrDefault(cityInfo => cityInfo.Name == PersonObj.City);
+            Language languageId = _db.Language.SingleOrDefault(L => L.Name == PersonObj.Language);
+
             if (ModelState.IsValid)
             {
-                City C = new() { Name = PersonObj.City, CountryId = 1};
-
                 People P = new()
                 {
                     Name = PersonObj.Name,
-                    City = C,
-                    PhoneNumber = PersonObj.PhoneNumber,
+                    CityId = cityId.Id,
+                    PhoneNumber = PersonObj.PhoneNumber
                 };
-                Language L = new()
-                {
-                    Name = PersonObj.Language
-                };
-                PeopleLanguage PL = new() { Language = L, People = P };
-                P.PeopleLanguagues = new() { PL };
+                P.PeopleLanguagues = new() { new PeopleLanguage { LanguageId = languageId.Id, People = P } };
 
                 _db.Peoples.Add(P);
                 _db.SaveChanges();

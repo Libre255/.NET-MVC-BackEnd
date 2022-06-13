@@ -20,21 +20,27 @@ namespace MVC_uppgift.ViewModels
 
         public List<CreatePersonViewModel> PersonViewList(ApplicationDbContext db)
         {
-            var dbMain = db.Peoples.Include(peps => peps.City).Include(PL => PL.PeopleLanguagues).ThenInclude(L => L.Language);
+            var ListOfPeoples = db.Peoples.Include(peps => peps.City).Include(PL => PL.PeopleLanguagues).ThenInclude(L => L.Language);
 
             List<CreatePersonViewModel> NewPersonList = new();
+
             if (db.Peoples != null)
             {
-                foreach (People p in dbMain)
+                foreach (People p in ListOfPeoples)
                 {
+                    List<Language> LanguageList = new();
+                    foreach (var L in p.PeopleLanguagues)
+                    {
+                        LanguageList.Add(L.Language);
+                    }
                     NewPersonList.Add(new CreatePersonViewModel
                     {
-                        Id = p.Id,
+                        Id  = p.Id,
                         Name = p.Name,
-                        PeopleLanguagues = p.PeopleLanguagues,
+                        ListOfLanguages = LanguageList,
                         City = p.City.Name,
                         PhoneNumber = p.PhoneNumber,
-                    });
+                    }); ;
                 }
             }
             return NewPersonList;

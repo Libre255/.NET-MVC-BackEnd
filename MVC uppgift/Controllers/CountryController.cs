@@ -2,9 +2,11 @@
 using MVC_uppgift.Data;
 using MVC_uppgift.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVC_uppgift.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
         public readonly ApplicationDbContext _db;

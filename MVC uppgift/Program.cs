@@ -9,7 +9,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));;
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddSession(options =>
@@ -32,6 +33,7 @@ app.MapControllerRoute(name: "City", pattern: "City/{action}", defaults: new { c
 app.MapControllerRoute(name: "Country", pattern: "Country/{action}", defaults: new { controller = "Country", action = "Index" });
 app.MapControllerRoute(name: "Language", pattern: "Language/{action}", defaults: new { controller = "Language", action = "Index" });
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();

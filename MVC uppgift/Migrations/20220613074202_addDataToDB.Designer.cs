@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220609172020_add-extrafields")]
-    partial class addextrafields
+    [Migration("20220613074202_addDataToDB")]
+    partial class addDataToDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f3a392a2-dee9-425b-8df1-abafcffcbe6d",
-                            ConcurrencyStamp = "3c4f63e6-20e1-4b20-863a-65c67d47ac08",
+                            Id = "f173608f-f1d0-4f5c-8634-1494d6858170",
+                            ConcurrencyStamp = "ba294d53-1f06-45da-9b62-193e1b7c48d5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "326049f4-e516-476b-9305-935752e00621",
-                            ConcurrencyStamp = "13e7fdfe-2c22-49b3-87fe-ac1a26aedfba",
+                            Id = "5763594a-a58b-4e24-9af0-82c75de7683a",
+                            ConcurrencyStamp = "99ad9889-66a5-4fab-a9c9-d67d26fefb2d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -154,6 +154,13 @@ namespace MVC_uppgift.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "f28e0df5-33f5-4fc2-9928-08273241c8b4",
+                            RoleId = "f173608f-f1d0-4f5c-8634-1494d6858170"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -251,6 +258,27 @@ namespace MVC_uppgift.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f28e0df5-33f5-4fc2-9928-08273241c8b4",
+                            AccessFailedCount = 0,
+                            Birthdate = "02/02/02",
+                            ConcurrencyStamp = "991c7da6-1b27-4cbc-9aa7-6998c3dcb6ae",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Adminsson",
+                            LastName = "Headersson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ/Du4ldpPy7R9LeUwqhbSqCCY3GWeTUaGMvSiRkr1B6GGaiFh9noJKPvvfiF+NyUg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1f91bc36-3e09-46fb-8ac5-f96858ffb5d5",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        });
                 });
 
             modelBuilder.Entity("MVC_uppgift.Models.City", b =>
