@@ -84,13 +84,13 @@ namespace MVC_uppgift.Controllers
         public IActionResult EditPeople(int Id)
         {
             MainVM.PeopleVM.PeopleList = MainVM.PeopleVM.PersonViewList(_db);
-            var person = MainVM.PeopleVM.PeopleList.Where(x => x.Id == Id).FirstOrDefault();
+            var person = _db.Peoples.FirstOrDefault(p => p.Id == Id);
             CreatePersonViewModel P = new()
             {
                 Name = person.Name,
                 PhoneNumber = person.PhoneNumber,
-                City = person.City,
-                Language = "Spanish",
+                City = person.City.Name,
+                Language = person.PeopleLanguagues[0].Language.Name,
                 ListOfCities = MainVM.CreatePersonVM.ListOfCities,
                 ListOfLanguages = MainVM.CreatePersonVM.ListOfLanguages
             };
