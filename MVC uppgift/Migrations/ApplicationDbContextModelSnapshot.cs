@@ -51,15 +51,15 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0f215c86-f595-4eb9-b5b3-f834779bc17c",
-                            ConcurrencyStamp = "9b08e861-6f28-4c22-bea6-e8b0865c51e0",
+                            Id = "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1",
+                            ConcurrencyStamp = "fc4f6811-4083-489d-acdf-3d075a919dba",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3abdd239-6420-4057-9559-3d5d4198ed82",
-                            ConcurrencyStamp = "e33813c7-2de5-457b-b00e-9a7916c97cf5",
+                            Id = "e17c34c4-8ffb-43c5-ad0a-744ee8e643a4",
+                            ConcurrencyStamp = "5492aa3d-e22e-42fe-9d31-12bbf2b78000",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -156,8 +156,8 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8590df00-79e8-4492-b7af-2ebd2cda26b8",
-                            RoleId = "0f215c86-f595-4eb9-b5b3-f834779bc17c"
+                            UserId = "0edecada-5a05-443d-b709-80e8d6e702db",
+                            RoleId = "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1"
                         });
                 });
 
@@ -263,10 +263,10 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8590df00-79e8-4492-b7af-2ebd2cda26b8",
+                            Id = "0edecada-5a05-443d-b709-80e8d6e702db",
                             AccessFailedCount = 0,
                             Birthdate = "02/02/02",
-                            ConcurrencyStamp = "7d54507d-aab8-431f-a874-98df75079dae",
+                            ConcurrencyStamp = "92141339-edc2-47c9-81b2-f8ef6bdb0a92",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Adminsson",
@@ -275,9 +275,9 @@ namespace MVC_uppgift.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHdt7Au7HT04gnoAQpInCG3hNfzyNiG7ulItRJiXsMflJjWgwShIrINI420pEwSycQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGV1EW0t+IxbxS4rjBGGz10wDsLP+BOUEWA9qip665Veb85PDv3XRm+KUul581B9Rg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "75273ad5-87c4-4c17-933f-cce6191cc67a",
+                            SecurityStamp = "8a5f11df-1409-4964-8113-60039a686c2f",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });

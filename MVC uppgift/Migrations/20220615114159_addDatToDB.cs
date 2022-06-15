@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_uppgift.Migrations
 {
-    public partial class addDataToDB : Migration
+    public partial class addDatToDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,6 +31,7 @@ namespace MVC_uppgift.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Birthdate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FlagAsAdmin = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -253,14 +254,14 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5763594a-a58b-4e24-9af0-82c75de7683a", "99ad9889-66a5-4fab-a9c9-d67d26fefb2d", "User", "USER" },
-                    { "f173608f-f1d0-4f5c-8634-1494d6858170", "ba294d53-1f06-45da-9b62-193e1b7c48d5", "Admin", "ADMIN" }
+                    { "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1", "fc4f6811-4083-489d-acdf-3d075a919dba", "Admin", "ADMIN" },
+                    { "e17c34c4-8ffb-43c5-ad0a-744ee8e643a4", "5492aa3d-e22e-42fe-9d31-12bbf2b78000", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "f28e0df5-33f5-4fc2-9928-08273241c8b4", 0, "02/02/02", "991c7da6-1b27-4cbc-9aa7-6998c3dcb6ae", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEJ/Du4ldpPy7R9LeUwqhbSqCCY3GWeTUaGMvSiRkr1B6GGaiFh9noJKPvvfiF+NyUg==", null, false, "1f91bc36-3e09-46fb-8ac5-f96858ffb5d5", false, "admin@admin.com" });
+                columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "FlagAsAdmin", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "0edecada-5a05-443d-b709-80e8d6e702db", 0, "02/02/02", "92141339-edc2-47c9-81b2-f8ef6bdb0a92", "admin@admin.com", false, "Adminsson", false, "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEGV1EW0t+IxbxS4rjBGGz10wDsLP+BOUEWA9qip665Veb85PDv3XRm+KUul581B9Rg==", null, false, "8a5f11df-1409-4964-8113-60039a686c2f", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Countries",
@@ -285,7 +286,7 @@ namespace MVC_uppgift.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "f173608f-f1d0-4f5c-8634-1494d6858170", "f28e0df5-33f5-4fc2-9928-08273241c8b4" });
+                values: new object[] { "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1", "0edecada-5a05-443d-b709-80e8d6e702db" });
 
             migrationBuilder.InsertData(
                 table: "Cities",

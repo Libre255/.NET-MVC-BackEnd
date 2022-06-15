@@ -1,0 +1,20 @@
+﻿@model MVC_uppgift.ViewModels.CityViewModel;
+
+<form class="dropdown-menu p-4" method="Post" asp-controller="City" asp-action="AddCity">
+    <div class="mb-3">
+        <label for="NameInput" class="form-label">City Name</label>
+        <input type="text" class="form-control" id="NameInput" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="CountryId" class="form-label">Country</label>
+        <select asp-for="CountryId" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            @foreach(var Country in Model.ListOfCountries)
+            {
+                <option value=@Country.Id>@Country.Name</option>
+            }
+        </select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-dark">Add</button>
+</form>

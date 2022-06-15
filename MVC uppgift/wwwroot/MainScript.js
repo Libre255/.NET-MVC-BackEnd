@@ -10,6 +10,21 @@
             modalDiv.find('.modal').modal('show');
         })
     })
+
+    
 })
 
-console.log("dddd")
+$(function () {
+
+    var countriesModal = $('.CountriesCityBox');
+    $('a[data-toggle="country-modal"]').click(function (event) {
+        console.log("countrya")
+        var url = $(this).data('url');
+        var decodeUrl = decodeURIComponent(url);
+        $.get(decodeUrl).done(function (data) {
+            countriesModal.html(data);
+            countriesModal.find('.modal').modal('show');
+        })
+    })
+})
+

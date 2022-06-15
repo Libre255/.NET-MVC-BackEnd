@@ -3,4 +3,13 @@
 <div class=" row">
     <div class="col d-flex border border-dark" >@Model.Id</div>
     <div class="col d-flex border border-dark" >@Model.Name</div>
+    <div class="col d-flex border border-dark">
+        <a class="btn btn-danger m-1" asp-route-Id=@Model.Id asp-controller="Country" asp-action="DeletCountry">
+            <partial name="_DeletIcon"/>
+        </a>
+        <a class="btn btn-info m-1"
+            data-toggle="country-modal" data-target="#editCountryCity" data-url=@Url.Action($"EditCountryCity/{Model.Id}") >
+            <partial name="_EditIcon"/>
+        </a>
+    </div>
 </div>

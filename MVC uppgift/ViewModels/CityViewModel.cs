@@ -4,6 +4,9 @@ namespace MVC_uppgift.ViewModels
 {
     public class CityViewModel
     {
-        public List<City> CityList { get; set; }
+        public string Name { get; set; }
+        public int CountryId { get; set; }
+        public List<City> CityList = new();
+        public List<Country> ListOfCountries = new();
     }
 }

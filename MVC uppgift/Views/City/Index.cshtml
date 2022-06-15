@@ -1,14 +1,23 @@
 ﻿@using MVC_uppgift.Models
 @model MVC_uppgift.ViewModels.CityViewModel
 
-<p class="fs-3 text-center">Cities</p>
-<div class="container mt-2 border border-dark w-25">
+<div class="container mt-2 w-25">
+    <p class="fs-3 text-center row d-flex justify-content-center">Cities</p>
+    <div class="dropdown row d-flex justify-content-center m-2">
+        <button style="width:6vw" class="btn btn-success dropdown-toggle" 
+                type="button"  data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                Add City
+        </button>
+        <partial name="_CreateCity" model=Model/>
+    </div>
     <div class="row bg-black text-white" >
         <div class="col d-flex justify-content-center " >Id</div>
         <div class="col d-flex justify-content-center " >Name</div>
+        <div class="col d-flex justify-content-center">Action</div>
     </div>
     @foreach(City City in Model.CityList)
     {
         <partial name="_City" model="City"/>
     }
 </div>
+<div class="CountriesCityBox"></div>

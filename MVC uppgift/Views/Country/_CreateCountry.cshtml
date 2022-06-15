@@ -1,0 +1,10 @@
+﻿@model MVC_uppgift.ViewModels.CountryViewModel;
+
+<form class="dropdown-menu p-4" method="Post" asp-controller="Country" asp-action="AddCountry">
+    <div class="mb-3">
+        <label for="NameInput" class="form-label">Name</label>
+        <input type="text" class="form-control" id="NameInput" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-dark">Add</button>
+</form>

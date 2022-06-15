@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220613074202_addDataToDB")]
-    partial class addDataToDB
+    [Migration("20220615114159_addDatToDB")]
+    partial class addDatToDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f173608f-f1d0-4f5c-8634-1494d6858170",
-                            ConcurrencyStamp = "ba294d53-1f06-45da-9b62-193e1b7c48d5",
+                            Id = "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1",
+                            ConcurrencyStamp = "fc4f6811-4083-489d-acdf-3d075a919dba",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5763594a-a58b-4e24-9af0-82c75de7683a",
-                            ConcurrencyStamp = "99ad9889-66a5-4fab-a9c9-d67d26fefb2d",
+                            Id = "e17c34c4-8ffb-43c5-ad0a-744ee8e643a4",
+                            ConcurrencyStamp = "5492aa3d-e22e-42fe-9d31-12bbf2b78000",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -158,8 +158,8 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "f28e0df5-33f5-4fc2-9928-08273241c8b4",
-                            RoleId = "f173608f-f1d0-4f5c-8634-1494d6858170"
+                            UserId = "0edecada-5a05-443d-b709-80e8d6e702db",
+                            RoleId = "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1"
                         });
                 });
 
@@ -209,6 +209,9 @@ namespace MVC_uppgift.Migrations
                     b.Property<string>("FirstName")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("FlagAsAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(255)
@@ -262,20 +265,21 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f28e0df5-33f5-4fc2-9928-08273241c8b4",
+                            Id = "0edecada-5a05-443d-b709-80e8d6e702db",
                             AccessFailedCount = 0,
                             Birthdate = "02/02/02",
-                            ConcurrencyStamp = "991c7da6-1b27-4cbc-9aa7-6998c3dcb6ae",
+                            ConcurrencyStamp = "92141339-edc2-47c9-81b2-f8ef6bdb0a92",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Adminsson",
+                            FlagAsAdmin = false,
                             LastName = "Headersson",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ/Du4ldpPy7R9LeUwqhbSqCCY3GWeTUaGMvSiRkr1B6GGaiFh9noJKPvvfiF+NyUg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGV1EW0t+IxbxS4rjBGGz10wDsLP+BOUEWA9qip665Veb85PDv3XRm+KUul581B9Rg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1f91bc36-3e09-46fb-8ac5-f96858ffb5d5",
+                            SecurityStamp = "8a5f11df-1409-4964-8113-60039a686c2f",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });

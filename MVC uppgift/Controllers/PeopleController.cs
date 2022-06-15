@@ -90,9 +90,30 @@ namespace MVC_uppgift.Controllers
                 Name = person.Name,
                 PhoneNumber = person.PhoneNumber,
                 City = person.City,
-                Language = "Spanish"
+                Language = "Spanish",
+                ListOfCities = MainVM.CreatePersonVM.ListOfCities,
+                ListOfLanguages = MainVM.CreatePersonVM.ListOfLanguages
             };
             return PartialView("_EditPeople", P);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public RedirectToActionResult UpdatePeople(CreatePersonViewModel Person)
+        {
+            People SelectedPerson = _db.Peoples.Include(c => c.PeopleLanguagues).FirstOrDefault(p => p.Id == Person.Id);
+            Language L = _db.Language.FirstOrDefault(lang => lang.Name == Person.Language);
+            SelectedPerson.Name = Person.Name;
+            SelectedPerson.PhoneNumber = Person.PhoneNumber;
+            SelectedPerson.City.Name = Person.City;
+            SelectedPerson.PeopleLanguagues = new List<PeopleLanguage>
+            {
+                new PeopleLanguage() { PeopleId = Person.Id, LanguageId = L.Id }
+            };
+                
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
 

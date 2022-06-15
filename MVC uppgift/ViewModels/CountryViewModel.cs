@@ -4,6 +4,7 @@ namespace MVC_uppgift.ViewModels
 {
     public class CountryViewModel
     {
-        public List<Country> CountryList { get; set; }
+        public string Name { get; set; }
+        public List<Country> CountryList = new();
     }
 }
