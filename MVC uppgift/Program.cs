@@ -32,6 +32,7 @@ app.MapControllerRoute(name: "People", pattern: "People/{action}", defaults: new
 app.MapControllerRoute(name: "City", pattern: "City/{action}", defaults: new { controller = "City", action = "Index" });
 app.MapControllerRoute(name: "Country", pattern: "Country/{action}", defaults: new { controller = "Country", action = "Index" });
 app.MapControllerRoute(name: "Language", pattern: "Language/{action}", defaults: new { controller = "Language", action = "Index" });
+app.MapControllerRoute(name: "Role", pattern: "Role/{action}", defaults: new { controller = "Role", action = "Index" });
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();

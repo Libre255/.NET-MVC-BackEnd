@@ -1,0 +1,11 @@
+﻿<form asp-action="AddUserToRole" method="post">  
+    <div class="form-group">
+        <label class="control-label">Role:</label>
+        <select name="role" class="form-control" asp-items="ViewBag.Roles"></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Users:</label>
+        <select name="user" class="form-control" asp-items="ViewBag.Users"></select>
+    </div>
+    <input type="submit" value="Add to role" class="btn btn-primary"/>
+</form>

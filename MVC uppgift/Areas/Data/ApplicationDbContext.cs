@@ -58,6 +58,7 @@ namespace MVC_uppgift.Data
             string adminRoleId = Guid.NewGuid().ToString();
             string userRoleId = Guid.NewGuid().ToString();
             string adminID = Guid.NewGuid().ToString();
+            string userID = Guid.NewGuid().ToString();
 
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole
@@ -75,7 +76,7 @@ namespace MVC_uppgift.Data
                     NormalizedName = "USER"
                 }
             );
-            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+            PasswordHasher<ApplicationUser> adminHasher = new PasswordHasher<ApplicationUser>();
             modelBuilder.Entity<ApplicationUser>().HasData(
                 new ApplicationUser
                 {
@@ -87,7 +88,7 @@ namespace MVC_uppgift.Data
                     FirstName = "Adminsson",
                     LastName = "Headersson",
                     Birthdate = "02/02/02",
-                    PasswordHash = hasher.HashPassword(null, "password")
+                    PasswordHash = adminHasher.HashPassword(null, "aaa")
                 }
             );
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
@@ -96,6 +97,29 @@ namespace MVC_uppgift.Data
                 {
                    RoleId = adminRoleId,
                    UserId = adminID
+                }
+            );
+            PasswordHasher<ApplicationUser> UserHasher = new PasswordHasher<ApplicationUser>();
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    Id = userID,
+                    Email = "user@r.r",
+                    NormalizedEmail = "USER@R.R",
+                    UserName = "user@r.r",
+                    NormalizedUserName = "USER@R.R",
+                    FirstName = "usersson",
+                    LastName = "headerusersson",
+                    Birthdate = "02/02/02",
+                    PasswordHash = UserHasher.HashPassword(null, "aaa")
+                }
+            );
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+
+                new IdentityUserRole<string>
+                {
+                    RoleId = userRoleId,
+                    UserId = userID
                 }
             );
 

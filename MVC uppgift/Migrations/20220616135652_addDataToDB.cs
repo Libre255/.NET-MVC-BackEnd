@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_uppgift.Migrations
 {
-    public partial class addDatToDB : Migration
+    public partial class addDataToDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,6 @@ namespace MVC_uppgift.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Birthdate = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FlagAsAdmin = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -254,14 +253,18 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1", "fc4f6811-4083-489d-acdf-3d075a919dba", "Admin", "ADMIN" },
-                    { "e17c34c4-8ffb-43c5-ad0a-744ee8e643a4", "5492aa3d-e22e-42fe-9d31-12bbf2b78000", "User", "USER" }
+                    { "21d33c07-d441-4ac8-a9ed-0b727610c81d", "bd4dae68-0c09-4cba-90a0-65c658e8d07a", "Admin", "ADMIN" },
+                    { "90ffd82c-f8c5-4b83-9a4a-96d00c32f151", "be2845c4-2364-4b75-88da-c3fc04bb2134", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "FlagAsAdmin", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "0edecada-5a05-443d-b709-80e8d6e702db", 0, "02/02/02", "92141339-edc2-47c9-81b2-f8ef6bdb0a92", "admin@admin.com", false, "Adminsson", false, "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEGV1EW0t+IxbxS4rjBGGz10wDsLP+BOUEWA9qip665Veb85PDv3XRm+KUul581B9Rg==", null, false, "8a5f11df-1409-4964-8113-60039a686c2f", false, "admin@admin.com" });
+                columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "686bdc96-fa0e-40af-8556-924ddb44408b", 0, "02/02/02", "1cb15f42-db42-4d29-821a-b9e77cf72158", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEMGuZY2NCL5dTdDAMHQXoy8wv868UdBC0cBO7Lb/00IwR/Gd67Srs8N2+xS1d3TxLg==", null, false, "f2329ac7-fdf1-467f-bf6b-c651002197a1", false, "admin@admin.com" },
+                    { "e519bea9-09ed-4231-acc7-d5d3279ba188", 0, "02/02/02", "4788e736-49d0-4cef-8dbe-f809df57103a", "user@r.r", false, "usersson", "headerusersson", false, null, "USER@R.R", "USER@R.R", "AQAAAAEAACcQAAAAELvS/0o9ypb/yVXy22F38TFO6UYaYs3ZkkupF802wBaVRrSHLeeYIu0fB2YbMYKwvg==", null, false, "2d68db41-6728-4a73-bbb9-8216415b1cc1", false, "user@r.r" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Countries",
@@ -286,7 +289,11 @@ namespace MVC_uppgift.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "da4bcf5c-8c06-4e64-854f-7fe5a52d2cd1", "0edecada-5a05-443d-b709-80e8d6e702db" });
+                values: new object[,]
+                {
+                    { "21d33c07-d441-4ac8-a9ed-0b727610c81d", "686bdc96-fa0e-40af-8556-924ddb44408b" },
+                    { "90ffd82c-f8c5-4b83-9a4a-96d00c32f151", "e519bea9-09ed-4231-acc7-d5d3279ba188" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Cities",
