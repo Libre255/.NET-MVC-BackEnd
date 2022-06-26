@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220616135652_addDataToDB")]
-    partial class addDataToDB
+    [Migration("20220626115258_addDataToDatabase")]
+    partial class addDataToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "21d33c07-d441-4ac8-a9ed-0b727610c81d",
-                            ConcurrencyStamp = "bd4dae68-0c09-4cba-90a0-65c658e8d07a",
+                            Id = "e9cc2dba-6bc2-47d4-8cf5-762832882c3c",
+                            ConcurrencyStamp = "64887d95-069a-4d2a-b448-3f94f20936a2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "90ffd82c-f8c5-4b83-9a4a-96d00c32f151",
-                            ConcurrencyStamp = "be2845c4-2364-4b75-88da-c3fc04bb2134",
+                            Id = "797cb290-5c48-491f-9822-61f01db3dfb6",
+                            ConcurrencyStamp = "39f888c4-bc20-4ed8-8456-2e7735d9abc1",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -158,13 +158,13 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "686bdc96-fa0e-40af-8556-924ddb44408b",
-                            RoleId = "21d33c07-d441-4ac8-a9ed-0b727610c81d"
+                            UserId = "b6a3a440-c425-4bc8-9890-e5e97e9e78aa",
+                            RoleId = "e9cc2dba-6bc2-47d4-8cf5-762832882c3c"
                         },
                         new
                         {
-                            UserId = "e519bea9-09ed-4231-acc7-d5d3279ba188",
-                            RoleId = "90ffd82c-f8c5-4b83-9a4a-96d00c32f151"
+                            UserId = "eef34a8d-ca2e-41a9-82a5-a8dabfe07344",
+                            RoleId = "797cb290-5c48-491f-9822-61f01db3dfb6"
                         });
                 });
 
@@ -267,10 +267,10 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "686bdc96-fa0e-40af-8556-924ddb44408b",
+                            Id = "b6a3a440-c425-4bc8-9890-e5e97e9e78aa",
                             AccessFailedCount = 0,
                             Birthdate = "02/02/02",
-                            ConcurrencyStamp = "1cb15f42-db42-4d29-821a-b9e77cf72158",
+                            ConcurrencyStamp = "576542d5-39d4-4471-bcff-8cdb1ba4788c",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Adminsson",
@@ -278,18 +278,18 @@ namespace MVC_uppgift.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMGuZY2NCL5dTdDAMHQXoy8wv868UdBC0cBO7Lb/00IwR/Gd67Srs8N2+xS1d3TxLg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEANvNLUeZN39RmaoT3sL3fHqYoGB9eXVUHuRCz4WxiFdVbVkc76ZTP6mfq3yeoTPgQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f2329ac7-fdf1-467f-bf6b-c651002197a1",
+                            SecurityStamp = "035c904d-a268-4234-b301-477cfda8460d",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "e519bea9-09ed-4231-acc7-d5d3279ba188",
+                            Id = "eef34a8d-ca2e-41a9-82a5-a8dabfe07344",
                             AccessFailedCount = 0,
                             Birthdate = "02/02/02",
-                            ConcurrencyStamp = "4788e736-49d0-4cef-8dbe-f809df57103a",
+                            ConcurrencyStamp = "985e0442-5a4d-4d39-a320-5144d3237537",
                             Email = "user@r.r",
                             EmailConfirmed = false,
                             FirstName = "usersson",
@@ -297,9 +297,9 @@ namespace MVC_uppgift.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@R.R",
                             NormalizedUserName = "USER@R.R",
-                            PasswordHash = "AQAAAAEAACcQAAAAELvS/0o9ypb/yVXy22F38TFO6UYaYs3ZkkupF802wBaVRrSHLeeYIu0fB2YbMYKwvg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED9dMY+nb/8VHyhCcVM7MitmUY9lXKniGjYCdGQ4IjxyCCQ1SULMFARS+b8KrS/+Eg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2d68db41-6728-4a73-bbb9-8216415b1cc1",
+                            SecurityStamp = "74ef506d-ed73-42c1-a50f-c609eda8c5ba",
                             TwoFactorEnabled = false,
                             UserName = "user@r.r"
                         });
@@ -401,7 +401,7 @@ namespace MVC_uppgift.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Language");
+                    b.ToTable("Languages");
 
                     b.HasData(
                         new
@@ -510,6 +510,11 @@ namespace MVC_uppgift.Migrations
                         {
                             PeopleId = 1,
                             LanguageId = 3
+                        },
+                        new
+                        {
+                            PeopleId = 1,
+                            LanguageId = 1
                         });
                 });
 

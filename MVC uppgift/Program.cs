@@ -1,11 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using MVC_uppgift.Data;
 using Microsoft.AspNetCore.Identity;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));;
 
@@ -20,7 +18,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 var app = builder.Build();
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -33,8 +30,8 @@ app.MapControllerRoute(name: "City", pattern: "City/{action}", defaults: new { c
 app.MapControllerRoute(name: "Country", pattern: "Country/{action}", defaults: new { controller = "Country", action = "Index" });
 app.MapControllerRoute(name: "Language", pattern: "Language/{action}", defaults: new { controller = "Language", action = "Index" });
 app.MapControllerRoute(name: "Role", pattern: "Role/{action}", defaults: new { controller = "Role", action = "Index" });
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
-
 app.Run();

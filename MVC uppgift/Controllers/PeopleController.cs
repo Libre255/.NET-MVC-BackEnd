@@ -20,7 +20,7 @@ namespace MVC_uppgift.Controllers
             {
                 MainVM.CreatePersonVM.ListOfCities.Add(city);
             }
-            foreach (var language in _db.Language)
+            foreach (var language in _db.Languages)
             {
                 MainVM.CreatePersonVM.ListOfLanguages.Add(language);
             }
@@ -62,7 +62,7 @@ namespace MVC_uppgift.Controllers
         {
 
             City cityId = _db.Cities.SingleOrDefault(cityInfo => cityInfo.Name == PersonObj.City);
-            Language languageId = _db.Language.SingleOrDefault(L => L.Name == PersonObj.Language);
+            Language languageId = _db.Languages.SingleOrDefault(L => L.Name == PersonObj.Language);
 
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace MVC_uppgift.Controllers
         public RedirectToActionResult UpdatePeople(CreatePersonViewModel Person)
         {
             People SelectedPerson = _db.Peoples.Include(c => c.PeopleLanguagues).FirstOrDefault(p => p.Id == Person.Id);
-            Language L = _db.Language.FirstOrDefault(lang => lang.Name == Person.Language);
+            Language L = _db.Languages.FirstOrDefault(lang => lang.Name == Person.Language);
             SelectedPerson.Name = Person.Name;
             SelectedPerson.PhoneNumber = Person.PhoneNumber;
             SelectedPerson.City.Name = Person.City;

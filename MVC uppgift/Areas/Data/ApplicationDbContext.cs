@@ -12,7 +12,7 @@ namespace MVC_uppgift.Data
         public DbSet<People> Peoples { get; set; }
         public DbSet<City>Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<Language> Language { get; set; }
+        public DbSet<Language> Languages { get; set; }
         public DbSet<PeopleLanguage> PeopleLanguages { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
 
@@ -52,6 +52,7 @@ namespace MVC_uppgift.Data
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 1, PeopleId = 4 });
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 2, PeopleId = 2 });
             modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 3, PeopleId = 1 });
+            modelBuilder.Entity<PeopleLanguage>().HasData(new PeopleLanguage { LanguageId = 1, PeopleId = 1 });
 
             modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfig());
 

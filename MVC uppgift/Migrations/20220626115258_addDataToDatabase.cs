@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_uppgift.Migrations
 {
-    public partial class addDataToDB : Migration
+    public partial class addDataToDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,7 +65,7 @@ namespace MVC_uppgift.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Language",
+                name: "Languages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -74,7 +74,7 @@ namespace MVC_uppgift.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Language", x => x.Id);
+                    table.PrimaryKey("PK_Languages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -235,9 +235,9 @@ namespace MVC_uppgift.Migrations
                 {
                     table.PrimaryKey("PK_PeopleLanguages", x => new { x.PeopleId, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_PeopleLanguages_Language_LanguageId",
+                        name: "FK_PeopleLanguages_Languages_LanguageId",
                         column: x => x.LanguageId,
-                        principalTable: "Language",
+                        principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -253,8 +253,8 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "21d33c07-d441-4ac8-a9ed-0b727610c81d", "bd4dae68-0c09-4cba-90a0-65c658e8d07a", "Admin", "ADMIN" },
-                    { "90ffd82c-f8c5-4b83-9a4a-96d00c32f151", "be2845c4-2364-4b75-88da-c3fc04bb2134", "User", "USER" }
+                    { "797cb290-5c48-491f-9822-61f01db3dfb6", "39f888c4-bc20-4ed8-8456-2e7735d9abc1", "User", "USER" },
+                    { "e9cc2dba-6bc2-47d4-8cf5-762832882c3c", "64887d95-069a-4d2a-b448-3f94f20936a2", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -262,8 +262,8 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "686bdc96-fa0e-40af-8556-924ddb44408b", 0, "02/02/02", "1cb15f42-db42-4d29-821a-b9e77cf72158", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEMGuZY2NCL5dTdDAMHQXoy8wv868UdBC0cBO7Lb/00IwR/Gd67Srs8N2+xS1d3TxLg==", null, false, "f2329ac7-fdf1-467f-bf6b-c651002197a1", false, "admin@admin.com" },
-                    { "e519bea9-09ed-4231-acc7-d5d3279ba188", 0, "02/02/02", "4788e736-49d0-4cef-8dbe-f809df57103a", "user@r.r", false, "usersson", "headerusersson", false, null, "USER@R.R", "USER@R.R", "AQAAAAEAACcQAAAAELvS/0o9ypb/yVXy22F38TFO6UYaYs3ZkkupF802wBaVRrSHLeeYIu0fB2YbMYKwvg==", null, false, "2d68db41-6728-4a73-bbb9-8216415b1cc1", false, "user@r.r" }
+                    { "b6a3a440-c425-4bc8-9890-e5e97e9e78aa", 0, "02/02/02", "576542d5-39d4-4471-bcff-8cdb1ba4788c", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEANvNLUeZN39RmaoT3sL3fHqYoGB9eXVUHuRCz4WxiFdVbVkc76ZTP6mfq3yeoTPgQ==", null, false, "035c904d-a268-4234-b301-477cfda8460d", false, "admin@admin.com" },
+                    { "eef34a8d-ca2e-41a9-82a5-a8dabfe07344", 0, "02/02/02", "985e0442-5a4d-4d39-a320-5144d3237537", "user@r.r", false, "usersson", "headerusersson", false, null, "USER@R.R", "USER@R.R", "AQAAAAEAACcQAAAAED9dMY+nb/8VHyhCcVM7MitmUY9lXKniGjYCdGQ4IjxyCCQ1SULMFARS+b8KrS/+Eg==", null, false, "74ef506d-ed73-42c1-a50f-c609eda8c5ba", false, "user@r.r" }
                 });
 
             migrationBuilder.InsertData(
@@ -277,7 +277,7 @@ namespace MVC_uppgift.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Language",
+                table: "Languages",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
@@ -291,8 +291,8 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "21d33c07-d441-4ac8-a9ed-0b727610c81d", "686bdc96-fa0e-40af-8556-924ddb44408b" },
-                    { "90ffd82c-f8c5-4b83-9a4a-96d00c32f151", "e519bea9-09ed-4231-acc7-d5d3279ba188" }
+                    { "e9cc2dba-6bc2-47d4-8cf5-762832882c3c", "b6a3a440-c425-4bc8-9890-e5e97e9e78aa" },
+                    { "797cb290-5c48-491f-9822-61f01db3dfb6", "eef34a8d-ca2e-41a9-82a5-a8dabfe07344" }
                 });
 
             migrationBuilder.InsertData(
@@ -322,6 +322,7 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "LanguageId", "PeopleId" },
                 values: new object[,]
                 {
+                    { 1, 1 },
                     { 3, 1 },
                     { 2, 2 },
                     { 1, 3 },
@@ -410,7 +411,7 @@ namespace MVC_uppgift.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Language");
+                name: "Languages");
 
             migrationBuilder.DropTable(
                 name: "Peoples");

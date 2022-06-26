@@ -16,7 +16,7 @@ namespace MVC_uppgift.Controllers
 
         public IActionResult Index()
         {
-            LanguageVM.ListOfLanguages = _db.Language.ToList();
+            LanguageVM.ListOfLanguages = _db.Languages.ToList();
             //var obj = _db.PeopleLanguages.Include(r => r.People).ToList(); use this to display both language and Person
             return View(LanguageVM);
         }
