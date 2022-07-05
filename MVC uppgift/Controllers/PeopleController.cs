@@ -61,18 +61,18 @@ namespace MVC_uppgift.Controllers
         public RedirectToActionResult AddPeople(CreatePersonViewModel PersonObj)
         {
 
-            City cityId = _db.Cities.SingleOrDefault(cityInfo => cityInfo.Name == PersonObj.City);
-            Language languageId = _db.Languages.SingleOrDefault(L => L.Name == PersonObj.Language);
+            City PersonCity = _db.Cities.SingleOrDefault(cityInfo => cityInfo.Name == PersonObj.City);
+            Language PersonLanguage = _db.Languages.SingleOrDefault(L => L.Name == PersonObj.Language);
 
             if (ModelState.IsValid)
             {
                 People P = new()
                 {
                     Name = PersonObj.Name,
-                    CityId = cityId.Id,
+                    CityId = PersonCity.Id,
                     PhoneNumber = PersonObj.PhoneNumber
                 };
-                P.PeopleLanguagues = new() { new PeopleLanguage { LanguageId = languageId.Id, People = P } };
+                P.PeopleLanguagues = new() { new PeopleLanguage { LanguageId = PersonLanguage.Id, People = P } };
 
                 _db.Peoples.Add(P);
                 _db.SaveChanges();

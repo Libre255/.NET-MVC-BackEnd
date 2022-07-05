@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_uppgift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220626115258_addDataToDatabase")]
-    partial class addDataToDatabase
+    [Migration("20220705213512_AddDataToDB")]
+    partial class AddDataToDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e9cc2dba-6bc2-47d4-8cf5-762832882c3c",
-                            ConcurrencyStamp = "64887d95-069a-4d2a-b448-3f94f20936a2",
+                            Id = "8ff2636a-a320-452b-9272-41ee0e170acb",
+                            ConcurrencyStamp = "b0c88ce5-1303-46d2-93df-07414e6283b6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "797cb290-5c48-491f-9822-61f01db3dfb6",
-                            ConcurrencyStamp = "39f888c4-bc20-4ed8-8456-2e7735d9abc1",
+                            Id = "fc6a5061-6c49-454d-a41f-4916d8c1167c",
+                            ConcurrencyStamp = "949d5e1a-79e2-4e31-8c70-2de66987c2df",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -158,13 +158,13 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "b6a3a440-c425-4bc8-9890-e5e97e9e78aa",
-                            RoleId = "e9cc2dba-6bc2-47d4-8cf5-762832882c3c"
+                            UserId = "8d9bc048-56bb-42a9-a289-6876463caba7",
+                            RoleId = "8ff2636a-a320-452b-9272-41ee0e170acb"
                         },
                         new
                         {
-                            UserId = "eef34a8d-ca2e-41a9-82a5-a8dabfe07344",
-                            RoleId = "797cb290-5c48-491f-9822-61f01db3dfb6"
+                            UserId = "7da86268-c305-47c4-961b-7a63f3db4001",
+                            RoleId = "fc6a5061-6c49-454d-a41f-4916d8c1167c"
                         });
                 });
 
@@ -267,10 +267,10 @@ namespace MVC_uppgift.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b6a3a440-c425-4bc8-9890-e5e97e9e78aa",
+                            Id = "8d9bc048-56bb-42a9-a289-6876463caba7",
                             AccessFailedCount = 0,
                             Birthdate = "02/02/02",
-                            ConcurrencyStamp = "576542d5-39d4-4471-bcff-8cdb1ba4788c",
+                            ConcurrencyStamp = "03537586-799a-4e57-bc62-88cad336edc1",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Adminsson",
@@ -278,18 +278,18 @@ namespace MVC_uppgift.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEANvNLUeZN39RmaoT3sL3fHqYoGB9eXVUHuRCz4WxiFdVbVkc76ZTP6mfq3yeoTPgQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDXn3RvIk2yTUsAPIlFHcbnT5CsLDxwOUdl4HVGp9N24FlWNx9x0p0oaqcmui+2gKw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "035c904d-a268-4234-b301-477cfda8460d",
+                            SecurityStamp = "506bd598-938d-48d0-a783-240b8b4e4771",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "eef34a8d-ca2e-41a9-82a5-a8dabfe07344",
+                            Id = "7da86268-c305-47c4-961b-7a63f3db4001",
                             AccessFailedCount = 0,
                             Birthdate = "02/02/02",
-                            ConcurrencyStamp = "985e0442-5a4d-4d39-a320-5144d3237537",
+                            ConcurrencyStamp = "10612c88-2680-4019-b786-182b7eb12d2e",
                             Email = "user@r.r",
                             EmailConfirmed = false,
                             FirstName = "usersson",
@@ -297,9 +297,9 @@ namespace MVC_uppgift.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@R.R",
                             NormalizedUserName = "USER@R.R",
-                            PasswordHash = "AQAAAAEAACcQAAAAED9dMY+nb/8VHyhCcVM7MitmUY9lXKniGjYCdGQ4IjxyCCQ1SULMFARS+b8KrS/+Eg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFmDOU06VDEknEHmmetwLcMr3rMAixHJvhRmZbudhCxRqYdOMGN0IApIAcnLoKkKdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "74ef506d-ed73-42c1-a50f-c609eda8c5ba",
+                            SecurityStamp = "25e0ec5c-c0c7-4e11-a225-9aba5b9ca1e5",
                             TwoFactorEnabled = false,
                             UserName = "user@r.r"
                         });

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC_uppgift.Migrations
 {
-    public partial class addDataToDatabase : Migration
+    public partial class AddDataToDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -253,8 +253,8 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "797cb290-5c48-491f-9822-61f01db3dfb6", "39f888c4-bc20-4ed8-8456-2e7735d9abc1", "User", "USER" },
-                    { "e9cc2dba-6bc2-47d4-8cf5-762832882c3c", "64887d95-069a-4d2a-b448-3f94f20936a2", "Admin", "ADMIN" }
+                    { "8ff2636a-a320-452b-9272-41ee0e170acb", "b0c88ce5-1303-46d2-93df-07414e6283b6", "Admin", "ADMIN" },
+                    { "fc6a5061-6c49-454d-a41f-4916d8c1167c", "949d5e1a-79e2-4e31-8c70-2de66987c2df", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -262,8 +262,8 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Birthdate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "b6a3a440-c425-4bc8-9890-e5e97e9e78aa", 0, "02/02/02", "576542d5-39d4-4471-bcff-8cdb1ba4788c", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEANvNLUeZN39RmaoT3sL3fHqYoGB9eXVUHuRCz4WxiFdVbVkc76ZTP6mfq3yeoTPgQ==", null, false, "035c904d-a268-4234-b301-477cfda8460d", false, "admin@admin.com" },
-                    { "eef34a8d-ca2e-41a9-82a5-a8dabfe07344", 0, "02/02/02", "985e0442-5a4d-4d39-a320-5144d3237537", "user@r.r", false, "usersson", "headerusersson", false, null, "USER@R.R", "USER@R.R", "AQAAAAEAACcQAAAAED9dMY+nb/8VHyhCcVM7MitmUY9lXKniGjYCdGQ4IjxyCCQ1SULMFARS+b8KrS/+Eg==", null, false, "74ef506d-ed73-42c1-a50f-c609eda8c5ba", false, "user@r.r" }
+                    { "7da86268-c305-47c4-961b-7a63f3db4001", 0, "02/02/02", "10612c88-2680-4019-b786-182b7eb12d2e", "user@r.r", false, "usersson", "headerusersson", false, null, "USER@R.R", "USER@R.R", "AQAAAAEAACcQAAAAEFmDOU06VDEknEHmmetwLcMr3rMAixHJvhRmZbudhCxRqYdOMGN0IApIAcnLoKkKdw==", null, false, "25e0ec5c-c0c7-4e11-a225-9aba5b9ca1e5", false, "user@r.r" },
+                    { "8d9bc048-56bb-42a9-a289-6876463caba7", 0, "02/02/02", "03537586-799a-4e57-bc62-88cad336edc1", "admin@admin.com", false, "Adminsson", "Headersson", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEDXn3RvIk2yTUsAPIlFHcbnT5CsLDxwOUdl4HVGp9N24FlWNx9x0p0oaqcmui+2gKw==", null, false, "506bd598-938d-48d0-a783-240b8b4e4771", false, "admin@admin.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -291,8 +291,8 @@ namespace MVC_uppgift.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "e9cc2dba-6bc2-47d4-8cf5-762832882c3c", "b6a3a440-c425-4bc8-9890-e5e97e9e78aa" },
-                    { "797cb290-5c48-491f-9822-61f01db3dfb6", "eef34a8d-ca2e-41a9-82a5-a8dabfe07344" }
+                    { "fc6a5061-6c49-454d-a41f-4916d8c1167c", "7da86268-c305-47c4-961b-7a63f3db4001" },
+                    { "8ff2636a-a320-452b-9272-41ee0e170acb", "8d9bc048-56bb-42a9-a289-6876463caba7" }
                 });
 
             migrationBuilder.InsertData(
